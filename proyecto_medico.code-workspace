@@ -7,13 +7,42 @@
 			"path": "./java"
 		}
 	],
+	
 	"settings": {
-
+		"debug.openDebug": "openOnDebugBreak",
+		"debug.internalConsoleOptions": "openOnSessionStart",
+		//Java
+		"[java]": {
+			"editor.formatOnSave": true,
+			"editor.formatOnPaste": true,
+			"editor.defaultFormatter": "redhat.java"
+		  },
+		//Dart
+		"[dart]": {
+			"editor.formatOnSave": true,
+			"editor.formatOnType": true,
+			"editor.rulers": [80],
+			"editor.selectionHighlight": false,
+			"editor.suggestSelection": "first",
+			"editor.tabCompletion": "onlySnippets",
+			"editor.wordBasedSuggestions": false,
+	}
 	},
+	
 	"extensions": {
 		"recommendations": [
 			"dart-code.flutter",
 			"dart-code.dart-code",
-			
+			"sonarsource.sonarlint-vscode",
+			"vscode-icons-team.vscode-icons",
+			"naumovs.color-highlight",
+			"mikestead.dotenv",
+			"hbenl.vscode-test-explorer",
+			"eamodio.gitlens",
+			"esbenp.prettier-vscode",
+			"vscjava.vscode-java-pack",
+			"vscjava.vscode-spring-initializr",
+			"nash.awesome-flutter-snippets",
+			"vscjava.vscode-gradle"
 		],}
 }
