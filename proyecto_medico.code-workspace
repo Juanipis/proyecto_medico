@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "./flutter"
+		},
+		{
+			"path": "./java"
+		}
+	],
+	"settings": {
+
+	},
+	"extensions": {
+		"recommendations": [
+			"dart-code.flutter",
+			"dart-code.dart-code",
+			
+		],}
+}
