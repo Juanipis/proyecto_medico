@@ -27,6 +27,8 @@
 			"editor.tabCompletion": "onlySnippets",
 			"editor.wordBasedSuggestions": false,
 	}
+	"java.configuration.updateBuildConfiguration": "automatic",
+    	"java.compile.nullAnalysis.mode": "automatic",
 	},
 	
 	"extensions": {
