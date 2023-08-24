@@ -36,11 +36,15 @@ class TutorialHome extends StatelessWidget {
       body: const Center(
         child: Text('Hello, world!'),
       ),
-      floatingActionButton: const FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         tooltip: 'Add', // used by assistive technologies
-        onPressed: null,
+        onPressed: prueba(),
         child: Icon(Icons.add),
       ),
     );
   }
+}
+
+prueba() {
+  print("pressed con cosito");
 }
