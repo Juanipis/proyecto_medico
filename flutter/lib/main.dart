@@ -21,8 +21,50 @@ class TutorialHome extends StatelessWidget {
         title: const Text('Apptiobiograma'),
       ),
       // body is the majority of the screen.
-      body: const Center(
-        child: Text('Hola mundo bonito'),
+      body: SafeArea(
+        top: true,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Align(
+              alignment: const AlignmentDirectional(0, 0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                child: Image.network(
+                  'https://i.postimg.cc/dQX4DSkR/Disen-o-sin-ti-tulo.png',
+                  width: 280,
+                  height: 280,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Align(
+              alignment: const AlignmentDirectional(0,1),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                child: Container(
+                  width: 300,
+                  height: 178,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                    child: Text(
+            'Antes de continuar por favor lea los términos y condiciones. Si continúa estará aceptando los términos y condiciones'
+                    )
+                  )
+                )
+              ),
+            ),
+            Container(
+              width: 315,
+              height: 100,
+              
+            )
+          ],
+        ),
       ),
       floatingActionButton: const FloatingActionButton(
         tooltip: 'Add', // used by assistive technologies
