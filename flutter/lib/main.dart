@@ -18,23 +18,11 @@ class TutorialHome extends StatelessWidget {
     // the major Material Components.
     return Scaffold(
       appBar: AppBar(
-        leading: const IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: null,
-        ),
-        title: const Text('Example title'),
-        actions: const [
-          IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: null,
-          ),
-        ],
+        title: const Text('Apptiobiograma'),
       ),
       // body is the majority of the screen.
       body: const Center(
-        child: Text('Hello, world!'),
+        child: Text('Hola mundo bonito'),
       ),
       floatingActionButton: const FloatingActionButton(
         tooltip: 'Add', // used by assistive technologies
