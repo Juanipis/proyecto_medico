@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
+import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
+import 'package:proyecto_medico/presentation/screens/data_input_mode/data_input_mode.dart';
+import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/bacteria_input_list.dart';
+import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/manual_input.dart';
+import 'package:proyecto_medico/presentation/screens/patient_data/patient_data.dart';
+import 'package:proyecto_medico/presentation/screens/results/results.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      title: 'Flutter Tutoriaaaal',
+    MaterialApp(
+      title: 'Apptiobiograma',
       home: TutorialHome(),
+      initialRoute: '/',
+      routes: {
+        '/patient_data': (context) => PatientData(),
+        '/antibiotic': (context) => Antibiotic(),
+        '/data_input': (context) => DataInputMode(),
+        '/data_input/manual': (context) => ManualInput(),
+        '/data_input/manual/bacteria': (context) => BacetriaInputList(),
+        '/data_input/camera': (context) => CameraInput(),
+        '/results': (context) => Results(),
+      },
     ),
   );
 }
@@ -39,30 +56,25 @@ class TutorialHome extends StatelessWidget {
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(0,1),
+              alignment: const AlignmentDirectional(0, 1),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                child: Container(
-                  width: 300,
-                  height: 178,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.white
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
-                    child: Text(
-            'Antes de continuar por favor lea los términos y condiciones. Si continúa estará aceptando los términos y condiciones'
-                    )
-                  )
-                )
-              ),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                  child: Container(
+                      width: 300,
+                      height: 178,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white),
+                      child: const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                          child: Text(
+                              'Antes de continuar por favor lea los términos y condiciones. Si continúa estará aceptando los términos y condiciones')))),
             ),
-            Container(
-              width: 315,
-              height: 100,
-              
-            )
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/patient_data');
+                },
+                child: Text("Aceptar")),
           ],
         ),
       ),
