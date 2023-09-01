@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+        "label": "Build Flutter container for development",
+        "type": "shell",
+        "command": "docker",
+        "args": ["build", "-t", "flutter-dev", "."],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        },
+        "presentation": {
+            "reveal": "always",
+            "panel": "new"
+        },
+        "problemMatcher": [],
+        "options": {
+            "cwd": "${workspaceFolder}/Docker/dev"
+        }
+        },
+        {
+        "label": "Run Flutter container for development",
+        "type": "shell",
+        "command": "docker",
+        "args": [
+            "run",
+            "-it",
+            "--rm",
+            "--name",
+            "flutter-develop-container",
+            "-v",
+            "${workspaceFolder}:/flutter",
+            "flutter-dev"
+        ],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+    ]
+}
