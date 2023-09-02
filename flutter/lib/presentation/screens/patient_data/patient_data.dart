@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'form_components.dart';
+
 class PatientData extends StatefulWidget {
   const PatientData({super.key});
 
@@ -10,6 +12,11 @@ class PatientData extends StatefulWidget {
 class _PatientDataState extends State<PatientData> {
   final TextEditingController sexController = TextEditingController();
   Sex? selectedSex;
+
+  final TextEditingController weightController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController creatinineController = TextEditingController();
+  bool penicillinAllergy = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,34 +51,46 @@ class _PatientDataState extends State<PatientData> {
                   sexDropDownMenu(sexEntries, width),
                   Row(
                     children: [
-                      SizedBox(
-                        height: 50,
-                        width: width * 0.40,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: "Peso (kg)",
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: width * 0.1,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: width * 0.40,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: "Edad (años)",
-                          ),
-                        ),
-                      ),
+                      textInput(width, weightController, "Peso (kg)"),
+                      separator(width),
+                      textInput(width, ageController, "Edad (años)"),
                     ],
-                  )
+                  ),
+                  textInput(width, creatinineController, "Creatinina (mg/dL)",
+                      widthScale: 0.90),
+                  SwitchForm(
+                      title: "Alergia a penicilina",
+                      width: width,
+                      widthScale: 0.9,
+                      icon: Icons.medical_services),
+                  SwitchForm(
+                      title: "Hemodiálisis",
+                      width: width,
+                      widthScale: 0.9,
+                      icon: Icons.medical_services),
+                  SwitchForm(
+                      title: "CAPD",
+                      width: width,
+                      widthScale: 0.9,
+                      icon: Icons.medical_services),
+                  SwitchForm(
+                      title: "CRRT",
+                      width: width,
+                      widthScale: 0.9,
+                      icon: Icons.medical_services),
                 ],
               ),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print("Sexo: ${selectedSex!.option}"
+                "\nPeso: ${weightController.text}"
+                "\nEdad: ${ageController.text}"
+                "\nCreatinina: ${creatinineController.text}"
+                "\nSwitch: $penicillinAllergy");
+          },
         ));
   }
 
@@ -88,6 +107,28 @@ class _PatientDataState extends State<PatientData> {
         });
       },
       width: width * 0.9,
+    );
+  }
+
+  SizedBox separator(double width) {
+    return SizedBox(
+      height: 50,
+      width: width * 0.1,
+    );
+  }
+
+  SizedBox textInput(
+      double width, TextEditingController boxController, String labelField,
+      {double widthScale = 0.40}) {
+    return SizedBox(
+      height: 50,
+      width: width * widthScale,
+      child: TextFormField(
+        controller: boxController,
+        decoration: InputDecoration(
+          labelText: labelField,
+        ),
+      ),
     );
   }
 }

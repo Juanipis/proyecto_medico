@@ -11,6 +11,7 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Apptiobiograma',
+      theme: ThemeData(useMaterial3: true),
       home: TutorialHome(),
       initialRoute: '/',
       routes: {
