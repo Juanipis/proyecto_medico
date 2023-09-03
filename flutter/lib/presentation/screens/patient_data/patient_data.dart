@@ -16,7 +16,37 @@ class _PatientDataState extends State<PatientData> {
   final TextEditingController weightController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController creatinineController = TextEditingController();
+
   bool penicillinAllergy = false;
+  bool hemodialysis = false;
+  bool capd = false;
+  bool crrt = false;
+
+  void onPenicillinAllergyChanged(bool value) {
+    setState(() {
+      print("Before penicillinAllergy: $value");
+      penicillinAllergy = value;
+      print("Afer penicillinAllergy: $penicillinAllergy");
+    });
+  }
+
+  void onHemodialysisChanged(bool value) {
+    setState(() {
+      hemodialysis = value;
+    });
+  }
+
+  void onCapdChanged(bool value) {
+    setState(() {
+      capd = value;
+    });
+  }
+
+  void onCrrtChanged(bool value) {
+    setState(() {
+      crrt = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,22 +92,30 @@ class _PatientDataState extends State<PatientData> {
                       title: "Alergia a penicilina",
                       width: width,
                       widthScale: 0.9,
-                      icon: Icons.medical_services),
+                      icon: Icons.medical_services,
+                      value: penicillinAllergy,
+                      onChanged: onPenicillinAllergyChanged),
                   SwitchForm(
                       title: "Hemodiálisis",
                       width: width,
                       widthScale: 0.9,
-                      icon: Icons.medical_services),
+                      icon: Icons.medical_services,
+                      value: hemodialysis,
+                      onChanged: onHemodialysisChanged),
                   SwitchForm(
                       title: "CAPD",
                       width: width,
                       widthScale: 0.9,
-                      icon: Icons.medical_services),
+                      icon: Icons.medical_services,
+                      value: capd,
+                      onChanged: onCapdChanged),
                   SwitchForm(
                       title: "CRRT",
                       width: width,
                       widthScale: 0.9,
-                      icon: Icons.medical_services),
+                      icon: Icons.medical_services,
+                      value: crrt,
+                      onChanged: onCrrtChanged),
                 ],
               ),
             ),
@@ -89,7 +127,10 @@ class _PatientDataState extends State<PatientData> {
                 "\nPeso: ${weightController.text}"
                 "\nEdad: ${ageController.text}"
                 "\nCreatinina: ${creatinineController.text}"
-                "\nSwitch: $penicillinAllergy");
+                "\nAlergia a penicilina: $penicillinAllergy"
+                "\nHemodialisis: $hemodialysis"
+                "\nCAPD: $capd"
+                "\nCRRT: $crrt");
           },
         ));
   }
