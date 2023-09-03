@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/data_input_mode.dart';
@@ -36,7 +37,11 @@ class TutorialHome extends StatelessWidget {
     // the major Material Components.
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Apptiobiograma'),
+        title: Text('Apptibiograma', 
+          textAlign: TextAlign.left, 
+          style: GoogleFonts.getFont('Outfit'),
+        ),
+        centerTitle: false,
       ),
       // body is the majority of the screen.
       body: SafeArea(
@@ -66,16 +71,34 @@ class TutorialHome extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white),
-                      child: const Padding(
+                      child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
-                          child: Text(
-                              'Antes de continuar por favor lea los términos y condiciones. Si continúa estará aceptando los términos y condiciones')))),
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                  'Antes de continuar por favor lea los términos y condiciones. Si continúa estará aceptando los términos y condiciones',
+                                  style: GoogleFonts.readexPro(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ))
+                                )))),
             ),
-            ElevatedButton(
+            Padding(padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 30),
+            child:ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/patient_data');
                 },
-                child: Text("Aceptar")),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0,10,0,10),
+                    child: Text("Comencemos!",
+                      style: GoogleFonts.readexPro(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        )
+                      )
+                )
+                )
+            ),
           ],
         ),
       ),
