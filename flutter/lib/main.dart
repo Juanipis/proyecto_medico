@@ -11,7 +11,8 @@ import 'package:proyecto_medico/presentation/screens/results/results.dart';
 void main() {
   runApp(
     MaterialApp(
-      title: 'Apptibiograma',
+      title: 'Apptiobiograma',
+      theme: ThemeData(useMaterial3: true),
       home: TutorialHome(),
       initialRoute: '/',
       routes: {
