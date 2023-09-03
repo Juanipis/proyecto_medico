@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:proyecto_medico/presentation/screens/patient_data/body_dialog.dart';
 
 import 'form_components.dart';
 
@@ -18,7 +21,7 @@ class _PatientDataState extends State<PatientData> {
   final TextEditingController weightController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController creatinineController = TextEditingController();
-
+  int selectedInfection = -1;
   bool penicillinAllergy = false;
   bool hemodialysis = false;
   bool capd = false;
@@ -26,9 +29,7 @@ class _PatientDataState extends State<PatientData> {
 
   void onPenicillinAllergyChanged(bool value) {
     setState(() {
-      print("Before penicillinAllergy: $value");
       penicillinAllergy = value;
-      print("Afer penicillinAllergy: $penicillinAllergy");
     });
   }
 
@@ -50,9 +51,22 @@ class _PatientDataState extends State<PatientData> {
     });
   }
 
+  final infections = [
+    "Sistema central", // 0
+    "Sangre", // 1
+    "Prostata", // 2
+    "Tracto genito urinario", // 3
+    "Huesos", // 4
+    "Boca", // 5
+    "Pulmones y vía aerea", // 6
+    "Abdomen", // 7
+    "Tejidos blandos", // 8
+  ];
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     final List<DropdownMenuEntry<Sex>> sexEntries = <DropdownMenuEntry<Sex>>[];
     final formKey = GlobalKey<FormState>();
     for (final Sex sex in Sex.values) {
@@ -124,13 +138,27 @@ class _PatientDataState extends State<PatientData> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Ubicación de infección"),
-                        Spacer(),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Ubicación de infección: "),
+                            Text(selectedInfection < 0 &&
+                                    selectedInfection <= infections.length
+                                ? "No seleccionada"
+                                : infections[selectedInfection]),
+                          ],
+                        ),
+                        const Spacer(),
                         ElevatedButton(
-                            onPressed: () {
-                              openFullscreenDialog(context);
+                            onPressed: () async {
+                              int? selectedInfection = await bodyDialog(
+                                  context, height, width, infections);
+                              setState(() {
+                                this.selectedInfection = selectedInfection!;
+                              });
+                              logger.d("Infección: $selectedInfection");
                             },
-                            child: Text("Seleccionar"))
+                            child: const Text("Seleccionar"))
                       ]),
                 ),
                 SizedBox(
@@ -146,9 +174,15 @@ class _PatientDataState extends State<PatientData> {
                 ),
                 SizedBox(
                   width: width * 0.9,
-                  height: width * 0.1,
+                  height: 50,
                   child: ElevatedButton(
                       onPressed: () {
+                        if (selectedSex == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text("Seleccione el sexo")));
+                          return;
+                        }
                         logger.d("Sexo: ${selectedSex!.option}"
                             "\nPeso: ${weightController.text}"
                             "\nEdad: ${ageController.text}"
@@ -207,41 +241,6 @@ class _PatientDataState extends State<PatientData> {
         ),
       ),
     );
-  }
-
-  void openFullscreenDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (context) => Dialog.fullscreen(
-                child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Scaffold(
-                appBar: AppBar(
-                  title: const Text("Ubicación de infección"),
-                  leading: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back),
-                  ),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text("Cerrar"))
-                  ],
-                ),
-                body: Column(children: [
-                  Text("Seleccione la ubicación de la infección"),
-                  Stack(
-                    children: [
-                      Image(image: AssetImage("assets/images/body.png")),
-                    ],
-                  )
-                ]),
-              ),
-            )));
   }
 }
 
