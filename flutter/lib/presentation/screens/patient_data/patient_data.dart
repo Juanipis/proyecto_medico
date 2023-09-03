@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import 'form_components.dart';
 
@@ -12,6 +13,7 @@ class PatientData extends StatefulWidget {
 class _PatientDataState extends State<PatientData> {
   final TextEditingController sexController = TextEditingController();
   Sex? selectedSex;
+  var logger = Logger();
 
   final TextEditingController weightController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
@@ -123,7 +125,7 @@ class _PatientDataState extends State<PatientData> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            print("Sexo: ${selectedSex!.option}"
+            logger.d("Sexo: ${selectedSex!.option}"
                 "\nPeso: ${weightController.text}"
                 "\nEdad: ${ageController.text}"
                 "\nCreatinina: ${creatinineController.text}"
