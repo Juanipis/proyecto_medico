@@ -65,7 +65,7 @@ class _PatientDataState extends State<PatientData> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back),
         ),
         title: const Text("Datos del paciente"),
       ),
@@ -127,7 +127,10 @@ class _PatientDataState extends State<PatientData> {
                         Text("Ubicación de infección"),
                         Spacer(),
                         ElevatedButton(
-                            onPressed: () {}, child: Text("Seleccionar"))
+                            onPressed: () {
+                              openFullscreenDialog(context);
+                            },
+                            child: Text("Seleccionar"))
                       ]),
                 ),
                 SizedBox(
@@ -204,6 +207,41 @@ class _PatientDataState extends State<PatientData> {
         ),
       ),
     );
+  }
+
+  void openFullscreenDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => Dialog.fullscreen(
+                child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Scaffold(
+                appBar: AppBar(
+                  title: const Text("Ubicación de infección"),
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Cerrar"))
+                  ],
+                ),
+                body: Column(children: [
+                  Text("Seleccione la ubicación de la infección"),
+                  Stack(
+                    children: [
+                      Image(image: AssetImage("assets/images/body.png")),
+                    ],
+                  )
+                ]),
+              ),
+            )));
   }
 }
 
