@@ -24,7 +24,7 @@ void main() {
       routes: {
         '/patient_data': (context) => PatientData(),
         '/antibiotic': (context) => Antibiotic(),
-        '/data_input': (context) => DataInputMode(),
+        '/data_input': (context) => ManualAutomatico(),
         '/data_input/manual': (context) => ManualInput(),
         '/data_input/manual/bacteria': (context) => BacetriaInputList(),
         '/data_input/camera': (context) => CameraInput(),
@@ -94,7 +94,7 @@ class TutorialHome extends StatelessWidget {
                                   )))))),
             ),
             Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 30),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/patient_data');
