@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
+import 'package:proyecto_medico/presentation/screens/camara/camara.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/data_input_mode.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/bacteria_input_list.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/manual_input.dart';
+import 'package:proyecto_medico/presentation/screens/gram/gram.dart';
+import 'package:proyecto_medico/presentation/screens/manual_automatico/manual_automatico.dart';
 import 'package:proyecto_medico/presentation/screens/patient_data/patient_data.dart';
 import 'package:proyecto_medico/presentation/screens/results/results.dart';
 
@@ -13,7 +16,9 @@ void main() {
     MaterialApp(
       title: 'Apptiobiograma',
       theme: ThemeData(useMaterial3: true),
-      home: TutorialHome(),
+      home: gram_screen(),
+      //gram_screen(),
+      //TutorialHome(),
       initialRoute: '/',
       routes: {
         '/patient_data': (context) => PatientData(),
@@ -23,6 +28,9 @@ void main() {
         '/data_input/manual/bacteria': (context) => BacetriaInputList(),
         '/data_input/camera': (context) => CameraInput(),
         '/results': (context) => Results(),
+        '/camara': (context) => Camara(),
+        '/manual_automatico': (context) => ManualAutomatico(),
+        '/gram': (context) => gram_screen(),
       },
     ),
   );
@@ -37,8 +45,9 @@ class TutorialHome extends StatelessWidget {
     // the major Material Components.
     return Scaffold(
       appBar: AppBar(
-        title: Text('Apptibiograma', 
-          textAlign: TextAlign.left, 
+        title: Text(
+          'Apptibiograma',
+          textAlign: TextAlign.left,
           style: GoogleFonts.getFont('Outfit'),
         ),
         centerTitle: false,
@@ -80,25 +89,21 @@ class TutorialHome extends StatelessWidget {
                                   style: GoogleFonts.readexPro(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
-                                  ))
-                                )))),
+                                  )))))),
             ),
-            Padding(padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 30),
-            child:ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/patient_data');
-                },
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0,10,0,10),
-                    child: Text("Comencemos!",
-                      style: GoogleFonts.readexPro(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        )
-                      )
-                )
-                )
-            ),
+            Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 30),
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/patient_data');
+                    },
+                    child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                        child: Text("Comencemos!",
+                            style: GoogleFonts.readexPro(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ))))),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Camara extends StatelessWidget {
   const Camara({
@@ -12,32 +13,23 @@ class Camara extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        automaticallyImplyLeading: false,
-        /*leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
-            ),
+          title: Text(
+            'Antibióticos',
+            textAlign: TextAlign.left,
+            style: GoogleFonts.getFont('Outfit'),
+          ),
+          centerTitle: false,
+          leading: IconButton(
+            // ignore: prefer_const_constructors
+            icon: BackButtonIcon(),
             onPressed: () async {
-              context.safePop();
+              Navigator.pushNamed(context, '/manual_automatico');
             },
-          ),*/
-        title: const Text(
-          'Antibióticos',
-          // style: FlutterFlowTheme.of(context).titleLarge,
-        ),
-        actions: const [],
-        centerTitle: false,
-        elevation: 0,
-      ),
+          )
+          //Icons.arrow_back_rounded),
+          ),
       body: SafeArea(
-        top: true,
+        //top: true,
         child: Align(
             alignment: const AlignmentDirectional(0, 0),
             child: Column(
@@ -45,23 +37,21 @@ class Camara extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height * 0.769,
+                  width: 360,
+                  height: 550,
                   decoration: BoxDecoration(
-                    //color: FlutterFlowTheme.of(context).alternate,
-                    border: Border.all(
-                        //color: FlutterFlowTheme.of(context).primary,
-                        ),
+                    // color: Colors.white30,
+                    border: Border.all(color: Colors.lightBlueAccent),
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.network(
                         'https://i.postimg.cc/KYQnbkzf/antibiogram.webp',
                         width: 350,
                         height: 545,
-                        fit: BoxFit.cover,
+                        //fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -71,7 +61,7 @@ class Camara extends StatelessWidget {
                     alignment: const AlignmentDirectional(0, 1),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -82,8 +72,9 @@ class Camara extends StatelessWidget {
                         },
                         child: const Icon(
                           Icons.camera_outlined,
+                          color: Colors.orange,
                           // color: FlutterFlowTheme.of(context).secondary,
-                          size: 60,
+                          size: 80,
                         ),
                       ),
                     ),

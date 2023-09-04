@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ManualAutomatico extends StatelessWidget {
   const ManualAutomatico({
@@ -12,32 +14,22 @@ class ManualAutomatico extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(),
       child: Scaffold(
-        //backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          // backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          /*leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
+            title: Text(
+              'Modo de entrada',
+              textAlign: TextAlign.left,
+              style: GoogleFonts.getFont('Outfit'),
             ),
-            onPressed: () async {
-              context.safePop();
-            },
-          ),*/
-          title: const Text(
-            'Modo de entrada',
-            // style: FlutterFlowTheme.of(context).titleLarge,
-          ),
-          actions: const [],
-          centerTitle: false,
-          elevation: 0,
-        ),
+            centerTitle: false,
+            leading: IconButton(
+              // ignore: prefer_const_constructors
+              icon: BackButtonIcon(),
+              onPressed: () async {
+                Navigator.pushNamed(context, '/patient_data');
+              },
+            )
+            //Icons.arrow_back_rounded),
+            ),
         body: SafeArea(
           top: true,
           child: Align(
@@ -54,7 +46,10 @@ class ManualAutomatico extends StatelessWidget {
                       padding: EdgeInsetsDirectional.fromSTEB(30, 30, 30, 30),
                       child: Text(
                         '¿Cómo deseas ingresar los datos?',
-                        //style: FlutterFlowTheme.of(context).headlineMedium,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 25,
+                        ),
                       ),
                     ),
                   ),
@@ -70,26 +65,33 @@ class ManualAutomatico extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              TextButton.icon(
-                                  onPressed: () async {},
-                                  icon: const Icon(
-                                    Icons.handyman,
-                                    size: 80,
+                              Center(
+                                child: Ink(
+                                  decoration: const ShapeDecoration(
+                                    color: Colors.lightBlueAccent,
+                                    shape: CircleBorder(),
                                   ),
-                                  /*FaIcon(
-                                    FontAwesomeIcons.pencilRuler,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    size: 80,
-                                  ),*/
-
-                                  label: Text('')),
+                                  child: IconButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/gram');
+                                      },
+                                      color: Colors.lightBlueAccent,
+                                      icon: const Icon(
+                                        Icons.handyman,
+                                        size: 70,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              ),
                               const Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                                 child: Text(
                                   'Entrada manual',
-                                  //style: FlutterFlowTheme.of(context).bodyMedium,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ],
@@ -100,43 +102,33 @@ class ManualAutomatico extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              TextButton.icon(
-                                  onPressed: () async {},
-                                  icon: const Icon(
-                                    Icons.camera,
-                                    size: 80,
+                              Center(
+                                child: Ink(
+                                  decoration: const ShapeDecoration(
+                                    color: Colors.lightBlueAccent,
+                                    shape: CircleBorder(),
                                   ),
-                                  /*FaIcon(
-                                    FontAwesomeIcons.pencilRuler,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    size: 80,
-                                  ),*/
-
-                                  label: const Text('')),
-                              /* FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                borderRadius: 70,
-                                borderWidth: 1,
-                                buttonSize: 130,
-                                fillColor: FlutterFlowTheme.of(context).primary,
-                                icon: Icon(
-                                  Icons.camera_alt,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  size: 80,
+                                  child: IconButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/camara');
+                                      },
+                                      color: Colors.amber,
+                                      icon: const Icon(
+                                        Icons.camera_alt_rounded,
+                                        size: 70,
+                                        color: Colors.white,
+                                      )),
                                 ),
-                                onPressed: () async {
-                                  context.pushNamed('Camara');
-                                },
-                              ),*/
+                              ),
                               const Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                                 child: Text(
                                   'Entrada automática',
-                                  // style:FlutterFlowTheme.of(context).bodyMedium,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ],

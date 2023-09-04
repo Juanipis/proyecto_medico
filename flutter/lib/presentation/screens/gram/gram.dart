@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // ignore: camel_case_types
 class gram_screen extends StatelessWidget {
@@ -8,33 +9,22 @@ class gram_screen extends StatelessWidget {
   Widget build(BuildContext context) {
     null;
     return Scaffold(
-      // Generated code for this AppBar Widget...
       appBar: AppBar(
-        //backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        /*
-        borderColor: Colors.transparent,
-        borderRadius: 30,
-        borderWidth: 1,
-        buttonSize: 60,
-        icon: Icon(
-          Icons.arrow_back_rounded,
-          color: FlutterFlowTheme.of(context).primaryText,
-          size: 30,
-        ),
-        onPressed: () async {
-          context.safePop();
-        },*/
-
-        title: const Text(
-          'Gram',
-          //style: FlutterFlowTheme.of(context).titleLarge,
-        ),
-        actions: const [],
-        centerTitle: false,
-        elevation: 0,
-      ),
+          title: Text(
+            'Gram',
+            textAlign: TextAlign.left,
+            style: GoogleFonts.getFont('Outfit'),
+          ),
+          centerTitle: false,
+          leading: IconButton(
+            // ignore: prefer_const_constructors
+            icon: BackButtonIcon(),
+            onPressed: () async {
+              Navigator.pushNamed(context, '/patient_data');
+            },
+          )
+          //Icons.arrow_back_rounded),
+          ),
       body: SafeArea(
         top: true,
         child: Column(
@@ -46,6 +36,10 @@ class gram_screen extends StatelessWidget {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                 child: Text(
                   'Listado de bacterias',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
+                  ),
                   // style: FlutterFlowTheme.of(context).headlineMedium,
                 ),
               ),
@@ -53,12 +47,42 @@ class gram_screen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Align(
-                      alignment: const AlignmentDirectional(0, 0),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text('Gram +'),
-                        /*
+                    SizedBox(
+                        height: 200,
+                        width: 200,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.orange,
+                              backgroundColor: Colors.orange),
+                          onPressed: () {},
+                          child: const Text(
+                            'Gram +',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 40,
+                            ),
+                          ),
+                        )),
+                    SizedBox(
+                        height: 200,
+                        width: 200,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.orange,
+                              backgroundColor: Colors.orange),
+                          onPressed: () {},
+                          child: const Text(
+                            'Gram -',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 40,
+                            ),
+                          ),
+                        )),
+
+                    /*
           options: FFButtonOptions(
             padding: EdgeInsetsDirectional.fromSTEB(30, 30, 30, 30),
             iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
@@ -74,31 +98,6 @@ class gram_screen extends StatelessWidget {
               width: 1,
             ),
             borderRadius: BorderRadius.circular(16),*/
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0, 0),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text('Gram -'),
-                        /*
-          options: FFButtonOptions(
-            padding: EdgeInsetsDirectional.fromSTEB(30, 30, 30, 30),
-            iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-            color: FlutterFlowTheme.of(context).secondary,
-            textStyle: TextStyle(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              fontWeight: FontWeight.w500,
-              fontSize: 40,
-            ),
-            elevation: 3,
-            borderSide: BorderSide(
-              color: Colors.transparent,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(16),*/
-                      ),
-                    ),
                   ])
             ]),
       ),
