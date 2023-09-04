@@ -8,7 +8,7 @@ class PatientData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PatientDataState();
+    return const PatientDataState();
   }
 }
 
@@ -200,6 +200,7 @@ class _FormTestState extends State<PatientDataState> {
                               "\nCAPD: $capd"
                               "\nCRRT: $crrt"
                               "\nInfección: $selectedInfection");
+                          Navigator.pushNamed(context, '/data_input');
                         },
                         child: const Text("Continuar")),
                   ),
