@@ -1,19 +1,25 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:proyecto_medico/presentation/screens/patient_data/form_components.dart';
 import 'package:logger/logger.dart';
 import 'package:proyecto_medico/presentation/screens/patient_data/body_dialog.dart';
 
-import 'form_components.dart';
-
-class PatientData extends StatefulWidget {
-  const PatientData({super.key});
+class PatientData extends StatelessWidget {
+  const PatientData({Key? key}) : super(key: key);
 
   @override
-  State<PatientData> createState() => _PatientDataState();
+  Widget build(BuildContext context) {
+    return PatientDataState();
+  }
 }
 
-class _PatientDataState extends State<PatientData> {
+class PatientDataState extends StatefulWidget {
+  const PatientDataState({super.key});
+
+  @override
+  State<PatientDataState> createState() => _FormTestState();
+}
+
+class _FormTestState extends State<PatientDataState> {
   final TextEditingController sexController = TextEditingController();
   Sex? selectedSex;
   var logger = Logger();
@@ -26,26 +32,25 @@ class _PatientDataState extends State<PatientData> {
   bool hemodialysis = false;
   bool capd = false;
   bool crrt = false;
-
-  void onPenicillinAllergyChanged(bool value) {
+  onPenicillinAllergyChanged(bool value) {
     setState(() {
       penicillinAllergy = value;
     });
   }
 
-  void onHemodialysisChanged(bool value) {
+  onHemodialysisChanged(bool value) {
     setState(() {
       hemodialysis = value;
     });
   }
 
-  void onCapdChanged(bool value) {
+  onCapdChanged(bool value) {
     setState(() {
       capd = value;
     });
   }
 
-  void onCrrtChanged(bool value) {
+  onCrrtChanged(bool value) {
     setState(() {
       crrt = value;
     });
@@ -63,12 +68,19 @@ class _PatientDataState extends State<PatientData> {
     "Tejidos blandos", // 8
   ];
 
+  final switchsLabels = [
+    "Alergia a penicilina",
+    "Hemodialisis",
+    "CAPD",
+    "CRRT",
+  ];
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final List<DropdownMenuEntry<Sex>> sexEntries = <DropdownMenuEntry<Sex>>[];
     final formKey = GlobalKey<FormState>();
+    final List<DropdownMenuEntry<Sex>> sexEntries = <DropdownMenuEntry<Sex>>[];
     for (final Sex sex in Sex.values) {
       sexEntries.add(DropdownMenuEntry(value: sex, label: sex.option));
     }
@@ -87,125 +99,122 @@ class _PatientDataState extends State<PatientData> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text("Ingrese los datos del paciente"),
-                sexDropDownMenu(sexEntries, width),
-                Row(
-                  children: [
-                    textInput(width, weightController, "Peso (kg)"),
-                    separator(width),
-                    textInput(width, ageController, "Edad (años)"),
-                  ],
-                ),
-                textInput(width, creatinineController, "Creatinina (mg/dL)",
-                    widthScale: 0.90),
-                SwitchForm(
-                    title: "Alergia a penicilina",
-                    width: width,
-                    widthScale: 0.9,
-                    icon: Icons.medical_services,
-                    value: penicillinAllergy,
-                    onChanged: onPenicillinAllergyChanged),
-                SwitchForm(
-                    title: "Hemodiálisis",
-                    width: width,
-                    widthScale: 0.9,
-                    icon: Icons.medical_services,
-                    value: hemodialysis,
-                    onChanged: onHemodialysisChanged),
-                SwitchForm(
-                    title: "CAPD",
-                    width: width,
-                    widthScale: 0.9,
-                    icon: Icons.medical_services,
-                    value: capd,
-                    onChanged: onCapdChanged),
-                SwitchForm(
-                    title: "CRRT",
-                    width: width,
-                    widthScale: 0.9,
-                    icon: Icons.medical_services,
-                    value: crrt,
-                    onChanged: onCrrtChanged),
-                SizedBox(
-                  width: width * 0.9,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Ubicación de infección: "),
-                            Text(selectedInfection < 0 &&
-                                    selectedInfection <= infections.length
-                                ? "No seleccionada"
-                                : infections[selectedInfection]),
-                          ],
-                        ),
-                        const Spacer(),
-                        ElevatedButton(
-                            onPressed: () async {
-                              int? selectedInfection = await bodyDialog(
-                                  context, height, width, infections);
-                              setState(() {
-                                this.selectedInfection = selectedInfection!;
-                              });
-                              logger.d("Infección: $selectedInfection");
-                            },
-                            child: const Text("Seleccionar"))
-                      ]),
-                ),
-                SizedBox(
-                  width: width * 0.9,
-                  child: const Row(children: [
-                    Icon(Icons.medication),
-                    Text("Depuración creatinina"),
-                    Spacer(),
-                    Text("151"),
-                    SizedBox(width: 10),
-                    Text("mg/dL"),
-                  ]),
-                ),
-                SizedBox(
-                  width: width * 0.9,
-                  height: 50,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        if (selectedSex == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text("Seleccione el sexo")));
-                          return;
-                        }
-                        logger.d("Sexo: ${selectedSex!.option}"
-                            "\nPeso: ${weightController.text}"
-                            "\nEdad: ${ageController.text}"
-                            "\nCreatinina: ${creatinineController.text}"
-                            "\nAlergia a penicilina: $penicillinAllergy"
-                            "\nHemodialisis: $hemodialysis"
-                            "\nCAPD: $capd"
-                            "\nCRRT: $crrt");
-                      },
-                      child: const Text("Continuar")),
-                ),
-                SizedBox(
-                  width: width * 0.9,
-                )
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text("Ingrese los datos del paciente"),
+              sexDropDownMenu(sexEntries, width),
+              Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          textInput(width, weightController, "Peso (kg)"),
+                          separator(width),
+                          textInput(width, ageController, "Edad (años)")
+                        ],
+                      ),
+                      textInput(
+                          width, creatinineController, "Creatinina (mg/dL)",
+                          widthScale: 0.90),
+                    ],
+                  )),
+              Column(
+                children: [
+                  switchTest(
+                      switchsLabels[0],
+                      width,
+                      0.9,
+                      Icons.medical_services,
+                      penicillinAllergy,
+                      onPenicillinAllergyChanged),
+                  switchTest(
+                      switchsLabels[1],
+                      width,
+                      0.9,
+                      Icons.medical_services,
+                      hemodialysis,
+                      onHemodialysisChanged),
+                  switchTest(switchsLabels[2], width, 0.9,
+                      Icons.medical_services, capd, onCapdChanged),
+                  switchTest(switchsLabels[3], width, 0.9,
+                      Icons.medical_services, crrt, onCrrtChanged),
+                  SizedBox(
+                    width: width * 0.9,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Ubicación de infección: "),
+                              Text(selectedInfection < 0 &&
+                                      selectedInfection <= infections.length
+                                  ? "No seleccionada"
+                                  : infections[selectedInfection]),
+                            ],
+                          ),
+                          const Spacer(),
+                          ElevatedButton(
+                              onPressed: () async {
+                                int? selectedInfection = await bodyDialog(
+                                    context, height, width, infections);
+                                setState(() {
+                                  this.selectedInfection = selectedInfection!;
+                                });
+                              },
+                              child: const Text("Seleccionar"))
+                        ]),
+                  ),
+                  SizedBox(
+                    width: width * 0.9,
+                    child: const Row(children: [
+                      Icon(Icons.medication),
+                      Text("Depuración creatinina"),
+                      Spacer(),
+                      Text("151"),
+                      SizedBox(width: 10),
+                      Text("mg/dL"),
+                    ]),
+                  ),
+                  SizedBox(
+                    width: width * 0.9,
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          if (selectedSex == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text("Seleccione el sexo")));
+                            return;
+                          }
+                          logger.d("Sexo: ${selectedSex!.option}"
+                              "\nPeso: ${weightController.text}"
+                              "\nEdad: ${ageController.text}"
+                              "\nCreatinina: ${creatinineController.text}"
+                              "\nAlergia a penicilina: $penicillinAllergy"
+                              "\nHemodialisis: $hemodialysis"
+                              "\nCAPD: $capd"
+                              "\nCRRT: $crrt"
+                              "\nInfección: $selectedInfection");
+                        },
+                        child: const Text("Continuar")),
+                  ),
+                  SizedBox(
+                    width: width * 0.9,
+                  )
+                ],
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 
-  //---------------------------------WIDGETS-----------------------------------
   DropdownMenu<Sex> sexDropDownMenu(
       List<DropdownMenuEntry<Sex>> sexEntries, double width) {
     return DropdownMenu(
@@ -221,13 +230,6 @@ class _PatientDataState extends State<PatientData> {
     );
   }
 
-  SizedBox separator(double width) {
-    return SizedBox(
-      height: 50,
-      width: width * 0.1,
-    );
-  }
-
   SizedBox textInput(
       double width, TextEditingController boxController, String labelField,
       {double widthScale = 0.40}) {
@@ -240,6 +242,13 @@ class _PatientDataState extends State<PatientData> {
           labelText: labelField,
         ),
       ),
+    );
+  }
+
+  SizedBox separator(double width) {
+    return SizedBox(
+      height: 50,
+      width: width * 0.1,
     );
   }
 }
