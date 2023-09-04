@@ -1,6 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
+import 'package:proyecto_medico/presentation/screens/bacteria/bacteria.dart';
 import 'package:proyecto_medico/presentation/screens/camara/camara.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/data_input_mode.dart';
@@ -16,9 +19,7 @@ void main() {
     MaterialApp(
       title: 'Apptiobiograma',
       theme: ThemeData(useMaterial3: true),
-      home: gram_screen(),
-      //gram_screen(),
-      //TutorialHome(),
+      home: TutorialHome(),
       initialRoute: '/',
       routes: {
         '/patient_data': (context) => PatientData(),
@@ -30,7 +31,8 @@ void main() {
         '/results': (context) => Results(),
         '/camara': (context) => Camara(),
         '/manual_automatico': (context) => ManualAutomatico(),
-        '/gram': (context) => gram_screen(),
+        '/gram': (context) => GramScreen(),
+        '/bacteria': (context) => Bacteria(),
       },
     ),
   );
