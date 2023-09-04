@@ -25,7 +25,7 @@ class ManualAutomatico extends StatelessWidget {
               // ignore: prefer_const_constructors
               icon: BackButtonIcon(),
               onPressed: () async {
-                Navigator.pushNamed(context, '/patient_data');
+                Navigator.pop(context);
               },
             )
             //Icons.arrow_back_rounded),

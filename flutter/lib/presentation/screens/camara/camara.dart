@@ -23,7 +23,7 @@ class Camara extends StatelessWidget {
             // ignore: prefer_const_constructors
             icon: BackButtonIcon(),
             onPressed: () async {
-              Navigator.pushNamed(context, '/manual_automatico');
+              Navigator.pop(context);
             },
           )
           //Icons.arrow_back_rounded),
@@ -68,7 +68,7 @@ class Camara extends StatelessWidget {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          //context.pushNamed('Antibioticos');
+                          Navigator.pushNamed(context, '/antibiotic');
                         },
                         child: const Icon(
                           Icons.camera_outlined,

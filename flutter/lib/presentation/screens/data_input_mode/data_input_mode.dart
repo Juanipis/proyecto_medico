@@ -19,13 +19,13 @@ class DataInputMode extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/data_input/manual');
+                  Navigator.pushNamed(context, '/gram');
                 },
                 child: Text("Entrada manual"),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/data_input/camera');
+                  Navigator.pushNamed(context, '/camara');
                 },
                 child: Text("Entrada automática"),
               ),
