@@ -14,7 +14,13 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Apptiobiograma',
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+          useMaterial3: true,
+          scaffoldBackgroundColor: Color.fromARGB(255, 241, 243, 246),
+          appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.white),
+              backgroundColor: Color.fromARGB(255, 93, 171, 255),
+              titleTextStyle: TextStyle(color: Colors.white, fontSize: 20))),
       home: const Home(),
       initialRoute: '/',
       routes: {
