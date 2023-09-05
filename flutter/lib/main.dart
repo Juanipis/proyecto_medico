@@ -3,13 +3,9 @@ import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
-import 'package:proyecto_medico/presentation/screens/bacteria/bacteria.dart';
-import 'package:proyecto_medico/presentation/screens/camara/camara.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
-import 'package:proyecto_medico/presentation/screens/data_input_mode/data_input_mode.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/bacteria_input_list.dart';
-import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/manual_input.dart';
-import 'package:proyecto_medico/presentation/screens/gram/gram.dart';
+import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/gram.dart';
 import 'package:proyecto_medico/presentation/screens/manual_automatico/manual_automatico.dart';
 import 'package:proyecto_medico/presentation/screens/patient_data/patient_data.dart';
 import 'package:proyecto_medico/presentation/screens/results/results.dart';
@@ -18,28 +14,30 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Apptiobiograma',
-      theme: ThemeData(useMaterial3: true),
-      home: TutorialHome(),
+      theme: ThemeData(
+          useMaterial3: true,
+          scaffoldBackgroundColor: Color.fromARGB(255, 241, 243, 246),
+          appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.white),
+              backgroundColor: Color.fromARGB(255, 93, 171, 255),
+              titleTextStyle: TextStyle(color: Colors.white, fontSize: 20))),
+      home: const Home(),
       initialRoute: '/',
       routes: {
-        '/patient_data': (context) => PatientData(),
-        '/antibiotic': (context) => Antibiotic(),
-        '/data_input': (context) => ManualAutomatico(),
-        '/data_input/manual': (context) => ManualInput(),
-        '/data_input/manual/bacteria': (context) => BacetriaInputList(),
-        '/data_input/camera': (context) => CameraInput(),
-        '/results': (context) => Results(),
-        '/camara': (context) => Camara(),
-        '/manual_automatico': (context) => ManualAutomatico(),
-        '/gram': (context) => GramScreen(),
-        '/bacteria': (context) => Bacteria(),
+        '/patient_data': (context) => const PatientData(),
+        '/antibiotic': (context) => const Antibiotic(),
+        '/data_input': (context) => const ManualAutomatico(),
+        '/data_input/manual': (context) => const GramScreen(),
+        '/data_input/manual/bacteria': (context) => const BacteriaInputList(),
+        '/data_input/camera': (context) => const CameraInput(),
+        '/results': (context) => Results()
       },
     ),
   );
 }
 
-class TutorialHome extends StatelessWidget {
-  const TutorialHome({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
