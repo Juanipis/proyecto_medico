@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_medico/presentation/screens/results/results.dart';
 
 class Antibiotic extends StatefulWidget {
   const Antibiotic({super.key});
@@ -7,6 +6,7 @@ class Antibiotic extends StatefulWidget {
   @override
   State<Antibiotic> createState() => _AntibioticState();
 }
+
 class TextStyleExample extends StatelessWidget {
   const TextStyleExample({
     super.key,
@@ -32,9 +32,9 @@ class _AntibioticState extends State<Antibiotic> {
 
   @override
   Widget build(BuildContext context) {
-  final textTheme = Theme.of(context)
-      .textTheme
-      .apply(displayColor: Theme.of(context).colorScheme.onSurface);
+    final textTheme = Theme.of(context)
+        .textTheme
+        .apply(displayColor: Theme.of(context).colorScheme.onSurface);
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

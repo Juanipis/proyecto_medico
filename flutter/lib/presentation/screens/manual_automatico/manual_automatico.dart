@@ -73,7 +73,8 @@ class ManualAutomatico extends StatelessWidget {
                                   ),
                                   child: IconButton(
                                       onPressed: () {
-                                        Navigator.pushNamed(context, '/gram');
+                                        Navigator.pushNamed(
+                                            context, '/data_input/manual');
                                       },
                                       color: Colors.lightBlueAccent,
                                       icon: const Icon(
@@ -110,7 +111,8 @@ class ManualAutomatico extends StatelessWidget {
                                   ),
                                   child: IconButton(
                                       onPressed: () {
-                                        Navigator.pushNamed(context, '/camara');
+                                        Navigator.pushNamed(
+                                            context, '/data_input/camera');
                                       },
                                       color: Colors.amber,
                                       icon: const Icon(
