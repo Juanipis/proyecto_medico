@@ -1,11 +1,17 @@
 {
 	"folders": [
 		{
-			"path": "./flutter"
+			"name": "java/backend",
+			"path": "./java/backend"
 		},
 		{
-			"path": "./java"
+			"name": "java/database",
+			"path": "./java/database"
 		}
+		{
+			"path": "./flutter"
+		}
+		
 	],
 	
 	"settings": {
