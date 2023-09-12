@@ -59,9 +59,7 @@ public class Patient {
     
     @Getter
     @Setter
-    Long infection_location_id;
-
    @ManyToOne()
-    @JoinColumn(name  = "infectionlocation_id")
-    private InfectionLocation infectionLocation_id;
+    @JoinColumn(name  = "infectionlocation_id", referencedColumnName = "id")
+    private InfectionLocation infectionLocation;
 }
