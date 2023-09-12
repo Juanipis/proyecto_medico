@@ -15,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,12 @@ public class Results {
     @Setter
     @JoinColumn(name = "bacterium_id", referencedColumnName = "id")
     private Bacterium bacterium;
+
+    @ManyToOne
+    @Getter
+    @Setter
+    @JoinColumn(name = "patient_id", referencedColumnName = "id")
+    private Patient patient;
 
     @Column
     @Getter
