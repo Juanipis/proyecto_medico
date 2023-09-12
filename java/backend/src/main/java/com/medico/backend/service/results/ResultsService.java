@@ -28,4 +28,9 @@ public class ResultsService implements IResultsService {
         return resultsRepository.save(results);
     }
 
+    @Override
+    public void delete(Long id) {
+        resultsRepository.deleteById(id);
+    }
+
 }

@@ -28,4 +28,9 @@ public class AntibioticService implements IAntibioticService {
         return antibioticRepository.save(antibiotic);
     }
 
+    @Override
+    public void delete(Long id) {
+        antibioticRepository.deleteById(id);
+    }
+
 }

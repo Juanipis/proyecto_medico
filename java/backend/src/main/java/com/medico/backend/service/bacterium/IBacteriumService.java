@@ -10,4 +10,6 @@ public interface IBacteriumService {
     public Bacterium getById(Long id);
 
     public Bacterium save(Bacterium bacterium);
+
+    public void delete(Long id);
 }

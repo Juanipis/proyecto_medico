@@ -28,4 +28,9 @@ public class BacteriumService implements IBacteriumService {
         return bacteriumRepository.save(bacterium);
 
     }
+
+    @Override
+    public void delete(Long id) {
+        bacteriumRepository.deleteById(id);
+    }
 }

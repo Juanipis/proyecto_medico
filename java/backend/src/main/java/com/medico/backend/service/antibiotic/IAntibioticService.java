@@ -10,4 +10,6 @@ public interface IAntibioticService {
     public Antibiotic getById(Long id);
 
     public Antibiotic save(Antibiotic bacterium);
+
+    public void delete(Long id);
 }
