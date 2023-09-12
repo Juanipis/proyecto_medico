@@ -3,6 +3,7 @@ package com.medico.backend.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class InfectionLocationController {
     @Autowired
     private IInfectionLocationService infectionLocationService;
 
-     @GetMapping("/all")
+    @GetMapping("/all")
     public List<InfectionLocation> getAll() {
         return infectionLocationService.findAll();
     }
@@ -33,5 +34,10 @@ public class InfectionLocationController {
     @GetMapping("/get/{id}")
     public InfectionLocation getById(@PathVariable Long id) {
         return infectionLocationService.getById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable Long id) {
+        infectionLocationService.delete(id);
     }
 }

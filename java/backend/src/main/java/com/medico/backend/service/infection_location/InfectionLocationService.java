@@ -9,14 +9,14 @@ import com.medico.backend.dao.IInfectionLocationDAO;
 import com.medico.backend.models.InfectionLocation;
 
 @Service
-public class InfectionLocationService implements IInfectionLocationService{
+public class InfectionLocationService implements IInfectionLocationService {
 
     @Autowired
     private IInfectionLocationDAO infectionDao;
 
     @Override
     public List<InfectionLocation> findAll() {
-       return infectionDao.findAll();
+        return infectionDao.findAll();
     }
 
     @Override
@@ -28,5 +28,10 @@ public class InfectionLocationService implements IInfectionLocationService{
     public InfectionLocation save(InfectionLocation infectionLocation) {
         return infectionDao.save(infectionLocation);
     }
-    
+
+    @Override
+    public void delete(Long id) {
+        infectionDao.deleteById(id);
+    }
+
 }

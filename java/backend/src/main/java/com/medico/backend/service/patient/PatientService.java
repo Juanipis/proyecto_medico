@@ -9,7 +9,7 @@ import com.medico.backend.models.Patient;
 import com.medico.backend.dao.IPatientDAO;
 
 @Service
-public class PatientService implements IPatientService{
+public class PatientService implements IPatientService {
     @Autowired
     private IPatientDAO patientRepository;
 
@@ -26,5 +26,10 @@ public class PatientService implements IPatientService{
     @Override
     public Patient save(Patient patient) {
         return patientRepository.save(patient);
+    }
+
+    @Override
+    public void delete(Long id) {
+        patientRepository.deleteById(id);
     }
 }

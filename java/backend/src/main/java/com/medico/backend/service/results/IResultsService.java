@@ -10,4 +10,6 @@ public interface IResultsService {
     public Results getById(Long id);
 
     public Results save(Results results);
+
+    public void delete(Long id);
 }
