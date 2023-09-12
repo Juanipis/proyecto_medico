@@ -1,35 +1,31 @@
-package com.medico.backend.services.bacterium;
+package com.medico.backend.service.bacterium;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.medico.backend.dao.IBacteriumDAO;
 import com.medico.backend.models.Bacterium;
+import com.medico.backend.repository.IBacteriumRepository;
 
 @Service
 public class BacteriumService implements IBacteriumService {
     @Autowired
-    private IBacteriumDAO bacteriumDAO;
+    private IBacteriumRepository bacteriumRepository;
 
     @Override
     public List<Bacterium> findAll() {
-        return bacteriumDAO.findAll();
+        return bacteriumRepository.findAll();
     }
 
     @Override
-    public Bacterium findById(Long id) {
-        return bacteriumDAO.findById(id).orElse(null);
+    public Bacterium getById(Long id) {
+        return bacteriumRepository.findById(id).orElse(null);
     }
 
     @Override
     public Bacterium save(Bacterium bacterium) {
-        return bacteriumDAO.save(bacterium);
-    }
+        return bacteriumRepository.save(bacterium);
 
-    @Override
-    public void deleteById(Long id) {
-        bacteriumDAO.deleteById(id);
     }
 }

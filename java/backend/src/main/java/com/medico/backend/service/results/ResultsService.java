@@ -1,36 +1,31 @@
-package com.medico.backend.services.results;
+package com.medico.backend.service.results;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.medico.backend.dao.IResultsDAO;
 import com.medico.backend.models.Results;
+import com.medico.backend.repository.IResultsRepository;
 
 @Service
 public class ResultsService implements IResultsService {
     @Autowired
-    private IResultsDAO resultsDAO;
+    private IResultsRepository resultsRepository;
 
     @Override
     public List<Results> findAll() {
-        return resultsDAO.findAll();
+        return resultsRepository.findAll();
     }
 
     @Override
-    public Results findById(Long id) {
-        return resultsDAO.findById(id).orElse(null);
+    public Results getById(Long id) {
+        return resultsRepository.findById(id).orElse(null);
     }
 
     @Override
     public Results save(Results results) {
-        return resultsDAO.save(results);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        resultsDAO.deleteById(id);
+        return resultsRepository.save(results);
     }
 
 }
