@@ -15,51 +15,50 @@ import lombok.Setter;
 @Table(name = "Patient")
 
 public class Patient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Getter
+  @Setter
+  private Long id;
 
-    @Column
-    @Getter
-    @Setter
-    Character sex;
+  @Column
+  @Getter
+  @Setter
+  Character sex;
 
-    @Column
-    @Getter
-    @Setter
-    double weight;
+  @Column
+  @Getter
+  @Setter
+  double weight;
 
-    @Column
-    @Getter
-    @Setter
-    int age;
+  @Column
+  @Getter
+  @Setter
+  int age;
 
-    @Column
-    @Getter
-    @Setter
-    Boolean creatinine;
+  @Column
+  @Getter
+  @Setter
+  Boolean creatinine;
 
-    @Column
-    @Getter
-    @Setter
-    Boolean hemodialisis;
+  @Column
+  @Getter
+  @Setter
+  Boolean hemodialisis;
 
-      @Column
-    @Getter
-    @Setter
-    Boolean capd;
+  @Column
+  @Getter
+  @Setter
+  Boolean capd;
 
-      @Column
-    @Getter
-    @Setter
-    Boolean crrt;
+  @Column
+  @Getter
+  @Setter
+  Boolean crrt;
 
-    
-    @Getter
-    @Setter
-   @ManyToOne()
-    @JoinColumn(name  = "infectionlocation_id", referencedColumnName = "id")
-    private InfectionLocation infectionLocation;
+  @Getter
+  @Setter
+  @ManyToOne()
+  @JoinColumn(name = "infectionlocation_id", referencedColumnName = "id")
+  private InfectionLocation infectionLocation;
 }

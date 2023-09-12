@@ -2,6 +2,7 @@ package com.medico.backend.models;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class InfectionLocation {
     @Setter
     private String name;
 
-    @OneToMany(mappedBy = "infection_location")
+    @OneToMany(mappedBy = "infectionLocation", cascade = CascadeType.ALL)
     private List<Patient> patients;
 
 }
