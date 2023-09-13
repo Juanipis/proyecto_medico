@@ -47,7 +47,9 @@ Ejemplo:
 
 Por favor, asegúrate de que los identificadores de los antibióticos y los valores de cantidad sean proporcionados correctamente.
 ## Modelo de clases 12/09/2023
-![Modelo de clases](https://github.com/Juanipis/proyecto_medico/blob/feat/images/java/backend/class_model.png?raw=true)
+![class_model](https://github.com/Juanipis/proyecto_medico/assets/40843763/9da531b7-ea51-41db-ab31-f0e9f3160fdb)
+
 ## Modelo endidad relación 12/09/2023
-![Moelo entidad relación](https://github.com/Juanipis/proyecto_medico/blob/feat/images/java/backend/model_entity_relationship.png?raw=true)
+![model_entity_relationship](https://github.com/Juanipis/proyecto_medico/assets/40843763/0e402ae9-6af6-42c5-8822-c76a3f56665f)
+
 
