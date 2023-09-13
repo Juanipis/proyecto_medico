@@ -46,3 +46,8 @@ Ejemplo:
 ```
 
 Por favor, asegúrate de que los identificadores de los antibióticos y los valores de cantidad sean proporcionados correctamente.
+## Modelo de clases 12/09/2023
+![Modelo de clases](https://github.com/Juanipis/proyecto_medico/blob/feat/images/java/backend/class_model.png?raw=true)
+## Modelo endidad relación 12/09/2023
+![Moelo entidad relación](https://github.com/Juanipis/proyecto_medico/blob/feat/images/java/backend/model_entity_relationship.png?raw=true)
+
