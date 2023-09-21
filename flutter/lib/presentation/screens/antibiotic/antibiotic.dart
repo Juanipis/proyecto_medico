@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_medico/presentation/text/tittle_material.dart';
 
 class Antibiotic extends StatefulWidget {
   const Antibiotic({super.key});
@@ -7,27 +8,9 @@ class Antibiotic extends StatefulWidget {
   State<Antibiotic> createState() => _AntibioticState();
 }
 
-class TextStyleExample extends StatelessWidget {
-  const TextStyleExample({
-    super.key,
-    required this.name,
-    required this.style,
-  });
-  final String name;
-  final TextStyle style;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(name, style: style),
-    );
-  }
-}
-
 class _AntibioticState extends State<Antibiotic> {
   String _selectedOption = '≤';
-  TextEditingController _textFieldController = TextEditingController();
+  final TextEditingController _textFieldController = TextEditingController();
   final List<String> _options = ['≤', '≥', '='];
 
   @override
@@ -41,33 +24,33 @@ class _AntibioticState extends State<Antibiotic> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
-          title: Text("Antibioticos"),
+          title: const Text("Antibioticos"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                child: TextStyleExample(
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                child: MaterialText(
                     name: 'Escherichia Coli', style: textTheme.displayMedium!)),
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Color(0xFFE0E3E7), width: 2)),
+                    border: Border.all(color: const Color(0xFFE0E3E7), width: 2)),
                 child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                    padding: const EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Align(
+                          const Align(
                               alignment: AlignmentDirectional(1, 0),
                               child: Text('Amikacin')),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           DropdownButton<String>(
@@ -83,33 +66,33 @@ class _AntibioticState extends State<Antibiotic> {
                                   _selectedOption = selectedOption!;
                                 });
                               }),
-                          Spacer(),
+                          const Spacer(),
                           Align(
-                              alignment: AlignmentDirectional(0, 1),
-                              child: Container(
+                              alignment: const AlignmentDirectional(0, 1),
+                              child: SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.2,
                                   child: TextField(
                                       controller: _textFieldController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'MIC',
                                       ))))
                         ]))),
-            Spacer(),
+            const Spacer(),
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Color(0xFFE0E3E7), width: 2)),
+                    border: Border.all(color: const Color(0xFFE0E3E7), width: 2)),
                 child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                    padding: const EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Align(
+                          const Align(
                               alignment: AlignmentDirectional(1, 0),
                               child: Text('Ampicilin')),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           DropdownButton<String>(
@@ -125,33 +108,33 @@ class _AntibioticState extends State<Antibiotic> {
                                   _selectedOption = selectedOption!;
                                 });
                               }),
-                          Spacer(),
+                          const Spacer(),
                           Align(
-                              alignment: AlignmentDirectional(0, 1),
-                              child: Container(
+                              alignment: const AlignmentDirectional(0, 1),
+                              child: SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.2,
                                   child: TextField(
                                       controller: _textFieldController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'MIC',
                                       ))))
                         ]))),
-            Spacer(),
+            const Spacer(),
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Color(0xFFE0E3E7), width: 2)),
+                    border: Border.all(color: const Color(0xFFE0E3E7), width: 2)),
                 child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                    padding: const EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Align(
+                          const Align(
                               alignment: AlignmentDirectional(1, 0),
                               child: Text('Aztreonam')),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           DropdownButton<String>(
@@ -167,33 +150,33 @@ class _AntibioticState extends State<Antibiotic> {
                                   _selectedOption = selectedOption!;
                                 });
                               }),
-                          Spacer(),
+                          const Spacer(),
                           Align(
-                              alignment: AlignmentDirectional(0, 1),
-                              child: Container(
+                              alignment: const AlignmentDirectional(0, 1),
+                              child: SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.2,
                                   child: TextField(
                                       controller: _textFieldController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'MIC',
                                       ))))
                         ]))),
-            Spacer(),
+            const Spacer(),
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Color(0xFFE0E3E7), width: 2)),
+                    border: Border.all(color: const Color(0xFFE0E3E7), width: 2)),
                 child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                    padding: const EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Align(
+                          const Align(
                               alignment: AlignmentDirectional(1, 0),
                               child: Text('Aztreonam')),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           DropdownButton<String>(
@@ -209,33 +192,33 @@ class _AntibioticState extends State<Antibiotic> {
                                   _selectedOption = selectedOption!;
                                 });
                               }),
-                          Spacer(),
+                          const Spacer(),
                           Align(
-                              alignment: AlignmentDirectional(0, 1),
-                              child: Container(
+                              alignment: const AlignmentDirectional(0, 1),
+                              child: SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.2,
                                   child: TextField(
                                       controller: _textFieldController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'MIC',
                                       ))))
                         ]))),
-            Spacer(),
+            const Spacer(),
             Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Color(0xFFE0E3E7), width: 2)),
+                    border: Border.all(color: const Color(0xFFE0E3E7), width: 2)),
                 child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                    padding: const EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Align(
+                          const Align(
                               alignment: AlignmentDirectional(1, 0),
                               child: Text('Ampicilin/Sulbactan')),
-                          SizedBox(
+                          const SizedBox(
                             width: 50,
                           ),
                           DropdownButton<String>(
@@ -251,24 +234,24 @@ class _AntibioticState extends State<Antibiotic> {
                                   _selectedOption = selectedOption!;
                                 });
                               }),
-                          Spacer(),
+                          const Spacer(),
                           Align(
-                              alignment: AlignmentDirectional(0, 1),
-                              child: Container(
+                              alignment: const AlignmentDirectional(0, 1),
+                              child: SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.2,
                                   child: TextField(
                                       controller: _textFieldController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'MIC',
                                       ))))
                         ]))),
-            Spacer(),
+            const Spacer(),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/results');
                 },
-                child: Text("Continuar"),
+                child: const Text("Continuar"),
               ),
             )
           ]),

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DataInputMode extends StatelessWidget {
   const DataInputMode({
