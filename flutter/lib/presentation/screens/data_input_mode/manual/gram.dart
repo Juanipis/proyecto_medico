@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_medico/presentation/text/tittle_material.dart';
 
 class GramScreen extends StatelessWidget {
   const GramScreen({super.key});
@@ -23,7 +24,7 @@ class GramScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextStyleExample(
+            MaterialText(
                 name: 'Listado de bacterias', style: textTheme.headlineSmall!),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -78,25 +79,6 @@ class GramScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class TextStyleExample extends StatelessWidget {
-  const TextStyleExample({
-    super.key,
-    required this.name,
-    required this.style,
-  });
-
-  final String name;
-  final TextStyle style;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(name, style: style),
     );
   }
 }

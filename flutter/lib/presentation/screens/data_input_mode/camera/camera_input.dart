@@ -5,7 +5,7 @@ class CameraInput extends StatelessWidget {
   const CameraInput({
     super.key,
     String? ubicacionInfeccion,
-  }) : this.ubicacionInfeccion = ubicacionInfeccion ?? 'Seleccionar';
+  }) : ubicacionInfeccion = ubicacionInfeccion ?? 'Seleccionar';
 
   final String ubicacionInfeccion;
 

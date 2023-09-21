@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
@@ -16,7 +14,7 @@ void main() {
       title: 'Apptiobiograma',
       theme: ThemeData(
           useMaterial3: true,
-          scaffoldBackgroundColor: Color.fromARGB(255, 241, 243, 246),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 241, 243, 246),
           appBarTheme: const AppBarTheme(
               iconTheme: IconThemeData(color: Colors.white),
               backgroundColor: Color.fromARGB(255, 93, 171, 255),
@@ -30,7 +28,7 @@ void main() {
         '/data_input/manual': (context) => const GramScreen(),
         '/data_input/manual/bacteria': (context) => const BacteriaInputList(),
         '/data_input/camera': (context) => const CameraInput(),
-        '/results': (context) => Results()
+        '/results': (context) => const Results()
       },
     ),
   );
@@ -81,7 +79,7 @@ class Home extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white),
                       child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                           child: Align(
                               alignment: Alignment.center,
                               child: Text(
@@ -92,13 +90,13 @@ class Home extends StatelessWidget {
                                   )))))),
             ),
             Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/patient_data');
                     },
                     child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                        padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                         child: Text("Comencemos!",
                             style: GoogleFonts.readexPro(
                               fontSize: 16,
