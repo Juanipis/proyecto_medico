@@ -57,16 +57,15 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Align(
-              alignment: const AlignmentDirectional(0, 0),
+            const Align(
+              alignment: AlignmentDirectional(0, 0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                child: Image.network(
-                  'https://i.postimg.cc/dQX4DSkR/Disen-o-sin-ti-tulo.png',
-                  width: 280,
-                  height: 280,
-                  fit: BoxFit.cover,
-                ),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                child: Image(
+                  image: AssetImage("images/logo.png"),
+                  width: 280, 
+                  height: 280
+              )
               ),
             ),
             Align(
