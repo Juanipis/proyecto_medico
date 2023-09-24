@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/bacteria_input_list.dart';
@@ -26,7 +27,7 @@ void main() {
         '/antibiotic': (context) => const Antibiotic(),
         '/data_input': (context) => const ManualAutomatico(),
         '/data_input/manual': (context) => const GramScreen(),
-        '/data_input/manual/bacteria': (context) => const BacteriaInputList(),
+        '/data_input/manual/bacteria': (context) => const BacteriaScreen(),
         '/data_input/camera': (context) => const CameraInput(),
         '/results': (context) => const Results()
       },
@@ -79,7 +80,8 @@ class Home extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white),
                       child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              30, 0, 30, 0),
                           child: Align(
                               alignment: Alignment.center,
                               child: Text(
@@ -96,7 +98,8 @@ class Home extends StatelessWidget {
                       Navigator.pushNamed(context, '/patient_data');
                     },
                     child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                         child: Text("Comencemos!",
                             style: GoogleFonts.readexPro(
                               fontSize: 16,

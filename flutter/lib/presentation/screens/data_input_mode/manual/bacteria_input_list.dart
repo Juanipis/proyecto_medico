@@ -1,39 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
+import 'package:proyecto_medico/blocs/bacterium/bacterium_blocs.dart';
+import 'package:proyecto_medico/blocs/bacterium/bacterium_events.dart';
+import 'package:proyecto_medico/blocs/bacterium/bacterium_states.dart';
+import 'package:proyecto_medico/models/bacterium_model.dart';
 import 'package:proyecto_medico/presentation/text/tittle_material.dart';
+import 'package:proyecto_medico/repositories/bacterium_repository.dart';
 
-class BacteriaInputList extends StatelessWidget {
-  const BacteriaInputList({super.key});
+class BacteriaScreen extends StatefulWidget {
+  const BacteriaScreen({super.key});
 
+  @override
+  _BacteriaScreenState createState() => _BacteriaScreenState();
+}
+
+class _BacteriaScreenState extends State<BacteriaScreen> {
+  int? selectedBacteriumIndex;
+  String? selectedBacteriumName;
+  var logger = Logger();
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final textTheme = Theme.of(context)
         .textTheme
         .apply(displayColor: Theme.of(context).colorScheme.onSurface);
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back),
+
+    return BlocProvider(
+      create: (context) =>
+          BacteriumBloc(BacteriumRepository())..add(LoadBacteriumEvent()),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
+          title: const Text("Bacterias"),
         ),
-        title: const Text("Bacterias"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MaterialText(
                   name: 'Listado de bacterias',
                   style: textTheme.headlineSmall!),
-              const RadioExample(),
+              bacteriumRadioBuilder(),
               SizedBox(
                 width: width,
                 child: ElevatedButton(
                     onPressed: () {
+                      if (selectedBacteriumIndex == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text("Por favor seleccione una bacteria")));
+                        return;
+                      }
+                      logger.i(
+                          "Bacteria selected: $selectedBacteriumName : $selectedBacteriumIndex");
                       Navigator.pushNamed(context, '/antibiotic');
                     },
                     child: const Text("Siguiente")),
@@ -44,54 +71,42 @@ class BacteriaInputList extends StatelessWidget {
       ),
     );
   }
-}
 
-enum BacteriaName {
-  escherichiaColi('Escherichia coli'),
-  klebsiella('Klebsiella'),
-  serrati('Serrati'),
-  enterobacter('Enterobacter'),
-  pseudomonas('Pseudomonas'),
-  citrobacter('Citrobacter'),
-  aeromonas('Aeromonas'),
-  morganella('Morganella'),
-  stenotrophomonasMaltophilia('Stenotrophomonas maltophilia'),
-  acinetobacter('Acinetobacter'),
-  proteusMirabilis('Proteus mirabilis'),
-  proteusVulgaris('Proteus vulgaris');
+  BlocBuilder<BacteriumBloc, BacteriumState> bacteriumRadioBuilder() {
+    return BlocBuilder<BacteriumBloc, BacteriumState>(
+      builder: (context, state) {
+        if (state is BacteriumLoadingState) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-  const BacteriaName(this.option);
-  final String option;
-}
+        if (state is BacteriumLoadedState) {
+          List<BacteriumModel> bacteriumList = state.bacteriums;
+          return Expanded(
+            child: ListView.builder(
+                itemCount: bacteriumList.length,
+                itemBuilder: (context, index) {
+                  return RadioListTile<int>(
+                    value: index,
+                    groupValue: selectedBacteriumIndex,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedBacteriumIndex = value;
+                        selectedBacteriumName = bacteriumList[index].name;
+                      });
+                    },
+                    title: Text(bacteriumList[index].name),
+                  );
+                }),
+          );
+        }
 
-class RadioExample extends StatefulWidget {
-  const RadioExample({super.key});
-
-  @override
-  State<RadioExample> createState() => _RadioExampleState();
-}
-
-class _RadioExampleState extends State<RadioExample> {
-  BacteriaName? _bacteriaName = BacteriaName.escherichiaColi;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        for (BacteriaName bacteriaName in BacteriaName.values)
-          ListTile(
-            title: Text(bacteriaName.option),
-            leading: Radio<BacteriaName>(
-              value: bacteriaName,
-              groupValue: _bacteriaName,
-              onChanged: (BacteriaName? value) {
-                setState(() {
-                  _bacteriaName = value;
-                });
-              },
-            ),
-          ),
-      ],
+        if (state is BacteriumErrorState) {
+          return Center(
+            child: Text(state.error),
+          );
+        }
+        return Container();
+      },
     );
   }
 }
