@@ -1,4 +1,5 @@
 {
     "cmake.configureOnOpen": false,
-    "cmake.sourceDirectory": "C:/Users/natyn/Documents/GitHub/proyecto_medico/flutter/windows"
+    "cmake.sourceDirectory": "C:/Users/natyn/Documents/GitHub/proyecto_medico/flutter/windows",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
