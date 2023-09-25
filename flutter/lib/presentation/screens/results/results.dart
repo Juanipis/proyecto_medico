@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_medico/preference/prefs.dart';
+import 'package:proyecto_medico/preference/preferences_utils.dart';
 import 'package:proyecto_medico/presentation/text/tittle_material.dart';
 
 class Results extends StatelessWidget {

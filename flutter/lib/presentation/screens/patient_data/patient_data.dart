@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_medico/presentation/screens/patient_data/form_components.dart';
 import 'package:logger/logger.dart';
+import 'package:proyecto_medico/preference/prefs.dart';
 import 'package:proyecto_medico/presentation/screens/patient_data/body_dialog.dart';
 
 class PatientData extends StatelessWidget {
@@ -184,9 +185,10 @@ class _FormTestState extends State<PatientDataState> {
                     width: width * 0.9,
                     height: 50,
                     child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          BuildContext currentContext = context;
                           if (selectedSex == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
+                            ScaffoldMessenger.of(currentContext).showSnackBar(
                                 const SnackBar(
                                     content: Text("Seleccione el sexo")));
                             return;
@@ -200,7 +202,16 @@ class _FormTestState extends State<PatientDataState> {
                               "\nCAPD: $capd"
                               "\nCRRT: $crrt"
                               "\nInfección: $selectedInfection");
-                          Navigator.pushNamed(context, '/data_input');
+                          await Storage.setSex(selectedSex!.option);
+                          await Storage.setWeight(weightController.text);
+                          await Storage.setAge(ageController.text);
+                          await Storage.setCreatinine(creatinineController.text);
+                          await Storage.setPenicillinAllergy(penicillinAllergy);
+                          await Storage.setHemodialysis(hemodialysis);
+                          await Storage.setCAPD(capd);
+                          await Storage.setCRRT(crrt);
+                          await Storage.setSelectedInfection(selectedInfection);
+                          Navigator.pushNamed(currentContext, '/data_input');
                         },
                         child: const Text("Continuar")),
                   ),
