@@ -7,10 +7,10 @@ import 'package:proyecto_medico/blocs/bacterium/bacterium_states.dart';
 import 'package:proyecto_medico/models/bacterium_model.dart';
 import 'package:proyecto_medico/presentation/text/tittle_material.dart';
 import 'package:proyecto_medico/repositories/bacterium_repository.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_medico/models/data_model.dart';
 
 class BacteriaScreen extends StatefulWidget {
-  const BacteriaScreen({super.key});
-
   @override
   _BacteriaScreenState createState() => _BacteriaScreenState();
 }
@@ -19,6 +19,7 @@ class _BacteriaScreenState extends State<BacteriaScreen> {
   int? selectedBacteriumIndex;
   String? selectedBacteriumName;
   var logger = Logger();
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -61,6 +62,10 @@ class _BacteriaScreenState extends State<BacteriaScreen> {
                       }
                       logger.i(
                           "Bacteria selected: $selectedBacteriumName : $selectedBacteriumIndex");
+                      final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
+                      final userData = userDataProvider.userData;
+                      userData!.setBacterium(selectedBacteriumIndex!);
+                      userDataProvider.setUserData(userData);
                       Navigator.pushNamed(context, '/antibiotic');
                     },
                     child: const Text("Siguiente")),

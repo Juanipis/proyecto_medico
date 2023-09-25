@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:proyecto_medico/models/data_model.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_medico/models/bacterium_model.dart';
 
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/ImageDisplayScreen.dart';
@@ -12,7 +15,9 @@ import 'package:proyecto_medico/presentation/screens/results/results.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    ChangeNotifierProvider(
+      create: (_) => UserDataProvider(),
+      child:MaterialApp(
       title: 'Apptiobiograma',
       theme: ThemeData(
           useMaterial3: true,
@@ -29,12 +34,12 @@ void main() {
         '/antibiotic': (context) => const Antibiotic(),
         '/data_input': (context) => const ManualAutomatico(),
         '/data_input/manual': (context) => const GramScreen(),
-        '/data_input/manual/bacteria': (context) => const BacteriaScreen(),
+        '/data_input/manual/bacteria': (context) => BacteriaScreen(),
         '/data_input/camera': (context) => const CameraInput(),
-        '/results': (context) => const Results()
+        '/results': (context) => Results()
       },
     ),
-  );
+  ));
 }
 
 class Home extends StatelessWidget {
@@ -59,16 +64,15 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Align(
-              alignment: const AlignmentDirectional(0, 0),
+            const Align(
+              alignment: AlignmentDirectional(0, 0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                child: Image.network(
-                  'https://i.postimg.cc/dQX4DSkR/Disen-o-sin-ti-tulo.png',
-                  width: 280,
-                  height: 280,
-                  fit: BoxFit.cover,
-                ),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                child: Image(
+                  image: AssetImage("images/logo.png"),
+                  width: 280, 
+                  height: 280
+              )
               ),
             ),
             Align(
