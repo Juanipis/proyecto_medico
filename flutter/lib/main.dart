@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
+import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/ImageDisplayScreen.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/bacteria_input_list.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/gram.dart';
@@ -20,7 +21,8 @@ void main() {
               iconTheme: IconThemeData(color: Colors.white),
               backgroundColor: Color.fromARGB(255, 93, 171, 255),
               titleTextStyle: TextStyle(color: Colors.white, fontSize: 20))),
-      home: const Home(),
+      home: const CameraInput(),
+      //Home(),
       initialRoute: '/',
       routes: {
         '/patient_data': (context) => const PatientData(),
