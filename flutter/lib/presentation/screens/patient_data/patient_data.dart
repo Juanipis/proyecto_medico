@@ -193,25 +193,19 @@ class _FormTestState extends State<PatientDataState> {
                                     content: Text("Seleccione el sexo")));
                             return;
                           }
-                          logger.d("Sexo: ${selectedSex!.option}"
-                              "\nPeso: ${weightController.text}"
-                              "\nEdad: ${ageController.text}"
-                              "\nCreatinina: ${creatinineController.text}"
-                              "\nAlergia a penicilina: $penicillinAllergy"
-                              "\nHemodialisis: $hemodialysis"
-                              "\nCAPD: $capd"
-                              "\nCRRT: $crrt"
-                              "\nInfección: $selectedInfection");
-                          await Storage.setSex(selectedSex!.option);
-                          await Storage.setWeight(weightController.text);
-                          await Storage.setAge(ageController.text);
-                          await Storage.setCreatinine(creatinineController.text);
-                          await Storage.setPenicillinAllergy(penicillinAllergy);
-                          await Storage.setHemodialysis(hemodialysis);
-                          await Storage.setCAPD(capd);
-                          await Storage.setCRRT(crrt);
-                          await Storage.setSelectedInfection(selectedInfection);
-                          Navigator.pushNamed(currentContext, '/data_input');
+
+                          await dbSave().then((value) {
+                            logger.d("Sexo: ${selectedSex!.option}"
+                                "\nPeso: ${weightController.text}"
+                                "\nEdad: ${ageController.text}"
+                                "\nCreatinina: ${creatinineController.text}"
+                                "\nAlergia a penicilina: $penicillinAllergy"
+                                "\nHemodialisis: $hemodialysis"
+                                "\nCAPD: $capd"
+                                "\nCRRT: $crrt"
+                                "\nInfección: $selectedInfection");
+                            Navigator.pushNamed(currentContext, '/data_input');
+                          });
                         },
                         child: const Text("Continuar")),
                   ),
@@ -225,6 +219,18 @@ class _FormTestState extends State<PatientDataState> {
         ],
       ),
     );
+  }
+
+  Future<void> dbSave() async {
+    await Storage.setSex(selectedSex!.option);
+    await Storage.setWeight(weightController.text);
+    await Storage.setAge(ageController.text);
+    await Storage.setCreatinine(creatinineController.text);
+    await Storage.setPenicillinAllergy(penicillinAllergy);
+    await Storage.setHemodialysis(hemodialysis);
+    await Storage.setCAPD(capd);
+    await Storage.setCRRT(crrt);
+    await Storage.setSelectedInfection(selectedInfection);
   }
 
   DropdownMenu<Sex> sexDropDownMenu(
