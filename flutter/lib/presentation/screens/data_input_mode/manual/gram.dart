@@ -29,49 +29,47 @@ class GramScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(80.0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                            width: 300,
-                            height: 100,
-                            child: ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.orange)),
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, '/data_input/manual/bacteria');
-                                },
-                                child: const Text(
-                                  "Gram +",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 30),
-                                ))),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        SizedBox(
-                            width: 300,
-                            height: 100,
-                            child: ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.blue)),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/bacteria');
-                                },
-                                child: const Text(
-                                  "Gram -",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 30),
-                                ))),
-                      ],
-                    ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                          width: 300,
+                          height: 100,
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.orange)),
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, '/data_input/manual/bacteria');
+                              },
+                              child: const Text(
+                                "Gram +",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 30),
+                              ))),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      SizedBox(
+                          width: 300,
+                          height: 100,
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.blue)),
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/bacteria');
+                              },
+                              child: const Text(
+                                "Gram -",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 30),
+                              ))),
+                    ],
                   ),
                 )
               ],

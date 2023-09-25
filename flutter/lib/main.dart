@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_medico/models/data_model.dart';
 import 'package:provider/provider.dart';
-import 'package:proyecto_medico/models/bacterium_model.dart';
 
 import 'package:proyecto_medico/presentation/screens/antibiotic/antibiotic.dart';
-import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/ImageDisplayScreen.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/camera/camera_input.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/bacteria_input_list.dart';
 import 'package:proyecto_medico/presentation/screens/data_input_mode/manual/gram.dart';
@@ -14,10 +12,9 @@ import 'package:proyecto_medico/presentation/screens/patient_data/patient_data.d
 import 'package:proyecto_medico/presentation/screens/results/results.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => UserDataProvider(),
-      child:MaterialApp(
+  runApp(ChangeNotifierProvider(
+    create: (_) => UserDataProvider(),
+    child: MaterialApp(
       title: 'Apptiobiograma',
       theme: ThemeData(
           useMaterial3: true,
@@ -26,17 +23,16 @@ void main() {
               iconTheme: IconThemeData(color: Colors.white),
               backgroundColor: Color.fromARGB(255, 93, 171, 255),
               titleTextStyle: TextStyle(color: Colors.white, fontSize: 20))),
-      home: const CameraInput(),
-      //Home(),
+      home: const Home(),
       initialRoute: '/',
       routes: {
         '/patient_data': (context) => const PatientData(),
         '/antibiotic': (context) => const Antibiotic(),
         '/data_input': (context) => const ManualAutomatico(),
         '/data_input/manual': (context) => const GramScreen(),
-        '/data_input/manual/bacteria': (context) => BacteriaScreen(),
+        '/data_input/manual/bacteria': (context) => const BacteriaScreen(),
         '/data_input/camera': (context) => const CameraInput(),
-        '/results': (context) => Results()
+        '/results': (context) => const Results()
       },
     ),
   ));
@@ -67,13 +63,11 @@ class Home extends StatelessWidget {
             const Align(
               alignment: AlignmentDirectional(0, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                child: Image(
-                  image: AssetImage("images/logo.png"),
-                  width: 280, 
-                  height: 280
-              )
-              ),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                  child: Image(
+                      image: AssetImage("assets/images/logo.png"),
+                      width: 280,
+                      height: 280)),
             ),
             Align(
               alignment: const AlignmentDirectional(0, 1),

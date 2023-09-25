@@ -73,7 +73,7 @@ class _CameraInputState extends State<CameraInput> {
                   border: Border.all(color: Colors.lightBlueAccent),
                 ),
                 child: _controller == null || !_controller!.value.isInitialized
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : CameraPreview(_controller!),
               ),
               Flexible(

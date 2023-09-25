@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class ImageDisplayScreen extends StatelessWidget {
   final String imagePath;
 
-  ImageDisplayScreen({required this.imagePath});
+  const ImageDisplayScreen({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Imagen Capturada'),
+        title: const Text('Imagen Capturada'),
       ),
       body: Center(
         child: Column(

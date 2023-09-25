@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_medico/models/data_model.dart';
 import 'package:proyecto_medico/presentation/screens/patient_data/form_components.dart';
 import 'package:logger/logger.dart';
 import 'package:proyecto_medico/presentation/screens/patient_data/body_dialog.dart';
@@ -161,6 +163,19 @@ class _FormTestState extends State<PatientDataState> {
                   const SnackBar(content: Text("Seleccione el sexo")));
               return;
             }
+            final userDataProvider =
+                Provider.of<UserDataProvider>(context, listen: false);
+            final userData = UserData(
+                sex: selectedSex!.option,
+                age: ageController.text,
+                weight: weightController.text,
+                creatinine: creatinineController.text,
+                hemodialysis: hemodialysis,
+                penicillin: penicillinAllergy,
+                crrt: crrt,
+                capd: capd,
+                infection: selectedInfection);
+            userDataProvider.setUserData(userData);
             logger.d("Sexo: ${selectedSex!.option}"
                 "\nPeso: ${weightController.text}"
                 "\nEdad: ${ageController.text}"

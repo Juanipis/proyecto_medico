@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:proyecto_medico/models/data_model.dart';
 
 class BacteriaScreen extends StatefulWidget {
+  const BacteriaScreen({super.key});
+
   @override
   _BacteriaScreenState createState() => _BacteriaScreenState();
 }
