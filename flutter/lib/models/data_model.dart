@@ -11,6 +11,7 @@ class UserData {
   bool? capd;
   int? infection;
   int? bacterium;
+  String? creatinineClearance;
   UserData({this.sex,
     this.weight,
     this.age,
@@ -20,7 +21,8 @@ class UserData {
     this.crrt,
     this.capd,
     this.infection,
-    this.bacterium});
+    this.bacterium,
+    this.creatinineClearance});
 
   void setBacterium(int? value) {
     bacterium = value;
