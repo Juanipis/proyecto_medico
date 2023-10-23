@@ -17,7 +17,6 @@ class PatientData extends StatelessWidget {
 
 class PatientDataState extends StatefulWidget {
   const PatientDataState({super.key});
-
   @override
   State<PatientDataState> createState() => _FormTestState();
 }
@@ -30,11 +29,35 @@ class _FormTestState extends State<PatientDataState> {
   final TextEditingController weightController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController creatinineController = TextEditingController();
+  final TextEditingController creatinineClearanceController = TextEditingController();
   int selectedInfection = -1;
   bool penicillinAllergy = false;
   bool hemodialysis = false;
   bool capd = false;
   bool crrt = false;
+  @override
+  void initState() {
+    super.initState();
+    ageController.addListener(_updateCreatinineClearance);
+    weightController.addListener(_updateCreatinineClearance);
+    creatinineController.addListener(_updateCreatinineClearance);
+  }
+  void _updateCreatinineClearance() {
+    final age = int.tryParse(ageController.text);
+    final weight = int.tryParse(weightController.text);
+    final creatinine = double.tryParse(creatinineController.text);
+
+    if (age != null && weight != null && creatinine != null) {
+      double creatinineClearance = (140 - age) * weight / (72 * creatinine);
+      if(selectedSex==Sex.female)
+        creatinineClearance*=0.85;
+      setState(() {
+        creatinineClearanceController.text = creatinineClearance.toStringAsFixed(2);
+      });
+
+    }
+  }
+
   onPenicillinAllergyChanged(bool value) {
     setState(() {
       penicillinAllergy = value;
@@ -117,13 +140,13 @@ class _FormTestState extends State<PatientDataState> {
                 infectionLocationButton(width, context, height),
                 SizedBox(
                   width: width * 0.9,
-                  child: const Row(children: [
+                  child: Row(children: [
                     Icon(Icons.medication),
                     Text("Depuración creatinina"),
                     Spacer(),
-                    Text("151"),
+                    Text(creatinineClearanceController.text),
                     SizedBox(width: 10),
-                    Text("mg/dL"),
+                    Text("mL/min"),
                   ]),
                 ),
                 continueButton(width, context),
@@ -174,7 +197,8 @@ class _FormTestState extends State<PatientDataState> {
                 penicillin: penicillinAllergy,
                 crrt: crrt,
                 capd: capd,
-                infection: selectedInfection);
+                infection: selectedInfection,
+                creatinineClearance: creatinineClearanceController.text);
             userDataProvider.setUserData(userData);
             logger.d("Sexo: ${selectedSex!.option}"
                 "\nPeso: ${weightController.text}"
@@ -184,7 +208,8 @@ class _FormTestState extends State<PatientDataState> {
                 "\nHemodialisis: $hemodialysis"
                 "\nCAPD: $capd"
                 "\nCRRT: $crrt"
-                "\nInfección: $selectedInfection");
+                "\nInfección: $selectedInfection"
+                "\nDepuración de Creatinina: ${creatinineClearanceController.text}");
             Navigator.pushNamed(context, '/data_input');
           },
           child: const Text("Continuar")),
@@ -279,3 +304,4 @@ enum Sex {
   const Sex(this.option);
   final String option;
 }
+
