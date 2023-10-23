@@ -38,7 +38,7 @@ class ImageDisplayScreen extends StatelessWidget {
                 highlightColor: Colors.transparent,
                 onTap: () async {},
                 child: const Icon(
-                  Icons.confirmation_num_outlined,
+                  Icons.check,
                   color: Colors.orange,
                   size: 80,
                 ),
