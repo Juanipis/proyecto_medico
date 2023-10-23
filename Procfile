@@ -1,2 +1,2 @@
-web: ./build.sh && java -jar *.jar -Dserver.port=$PORT
+web: java -jar java/backend/target/*.jar -D server.port=$PORT
 
