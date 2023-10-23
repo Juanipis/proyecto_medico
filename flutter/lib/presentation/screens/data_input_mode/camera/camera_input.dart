@@ -89,13 +89,18 @@ class _CameraInputState extends State<CameraInput> {
                       onTap: () async {
                         if (_controller != null &&
                             _controller!.value.isInitialized) {
-                          final Directory extDir =
-                              await getApplicationDocumentsDirectory();
+                          final Directory? extDir =
+                              await getExternalStorageDirectory();
+                          if (extDir == null) {
+                            print(
+                                "Error: No se pudo obtener el directorio de almacenamiento externo.");
+                            return; // Salir del método onTap si no se puede obtener el directorio.
+                          }
                           final String dirPath =
-                              '${extDir.path}/Pictures/flutter_camera'; //en esta direccion se guardaran las fotos
+                              '${extDir.path}/proyecto_medico';
                           await Directory(dirPath).create(recursive: true);
                           final String filePath =
-                              '$dirPath/${DateTime.now().millisecondsSinceEpoch}.jpg'; /* Estamos definiendo la ruta completa del archivo donde se guardará la imagen. La imagen tendrá un nombre basado en la hora actual (en milisegundos desde la "epoch", que es una fecha y hora específica utilizada como punto de referencia) y tendrá una extensión .jpg.*/
+                              '$dirPath/${DateTime.now().millisecondsSinceEpoch}.jpg';
 
                           if (_controller!.value.isTakingPicture) {
                             // Si ya se está tomando una foto, no hagas nada.
