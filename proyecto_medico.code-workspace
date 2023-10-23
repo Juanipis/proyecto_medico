@@ -1,6 +1,10 @@
 {
 	"folders": [
 		{
+			"name": ".",
+			"path": "./"
+		}
+		{
 			"name": "java/backend",
 			"path": "./java/backend"
 		},

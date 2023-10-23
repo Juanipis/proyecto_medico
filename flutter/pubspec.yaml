@@ -43,6 +43,7 @@ dependencies:
   equatable: ^2.0.5
   flutter_bloc: ^8.1.3
   provider: ^6.0.5
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   
@@ -72,6 +73,7 @@ flutter:
   assets:
     - assets/images/body.png
     - assets/images/logo.png
+    - .env
 
   # To add assets to your application, add an assets section, like this:
   # assets:

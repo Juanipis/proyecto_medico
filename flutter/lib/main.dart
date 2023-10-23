@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proyecto_medico/models/data_model.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,8 @@ import 'package:proyecto_medico/presentation/screens/manual_automatico/manual_au
 import 'package:proyecto_medico/presentation/screens/patient_data/patient_data.dart';
 import 'package:proyecto_medico/presentation/screens/results/results.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load();
   runApp(ChangeNotifierProvider(
     create: (_) => UserDataProvider(),
     child: MaterialApp(
