@@ -1,2 +1,2 @@
-web: cd java/backend && mvn clean install && java -jar target/*.jar -D server.port=$PORT
+web: ./build.sh && java -jar *.jar -Dserver.port=$PORT
 
