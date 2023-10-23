@@ -1,14 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:proyecto_medico/models/bacterium_model.dart';
 
 class BacteriumRepository {
-  // TODO: Change endpoint to real endpoint
-  String endpoint = "https://mocki.io/v1/d484f984-17f2-46c7-93d6-954b917570e2";
+  String endpoint = dotenv.env['API_ENDPOINT']!;
+  String path = dotenv.env['BACTERIUMLIST_PATH']!;
 
   Future<List<BacteriumModel>> getBacteriums() async {
-    Response response = await get(Uri.parse(endpoint));
+    Response response = await get(Uri.parse(endpoint + path));
     if (response.statusCode == 200) {
       final List result = json.decode(response.body);
       return result
