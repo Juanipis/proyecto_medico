@@ -17,6 +17,8 @@ import lombok.Setter;
 public class Antibiotic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private Long id;
 
     @Column
