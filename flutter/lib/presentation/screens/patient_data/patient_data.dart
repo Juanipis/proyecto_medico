@@ -304,4 +304,3 @@ enum Sex {
   const Sex(this.option);
   final String option;
 }
-

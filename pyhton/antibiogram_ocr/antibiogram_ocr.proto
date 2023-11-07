@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package antibiogram_ocr;
+
+message ImageRequest {
+  bytes image_data = 1;
+}
+
+message OCRResponse {
+  string text = 1;
+}
+
+service OCRService {
+  rpc PerformOCR (ImageRequest) returns (OCRResponse);
+}
