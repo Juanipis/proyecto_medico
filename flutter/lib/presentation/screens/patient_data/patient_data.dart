@@ -29,7 +29,8 @@ class _FormTestState extends State<PatientDataState> {
   final TextEditingController weightController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController creatinineController = TextEditingController();
-  final TextEditingController creatinineClearanceController = TextEditingController();
+  final TextEditingController creatinineClearanceController =
+      TextEditingController();
   int selectedInfection = -1;
   bool penicillinAllergy = false;
   bool hemodialysis = false;
@@ -42,6 +43,7 @@ class _FormTestState extends State<PatientDataState> {
     weightController.addListener(_updateCreatinineClearance);
     creatinineController.addListener(_updateCreatinineClearance);
   }
+
   void _updateCreatinineClearance() {
     final age = int.tryParse(ageController.text);
     final weight = int.tryParse(weightController.text);
@@ -49,12 +51,11 @@ class _FormTestState extends State<PatientDataState> {
 
     if (age != null && weight != null && creatinine != null) {
       double creatinineClearance = (140 - age) * weight / (72 * creatinine);
-      if(selectedSex==Sex.female)
-        creatinineClearance*=0.85;
+      if (selectedSex == Sex.female) creatinineClearance *= 0.85;
       setState(() {
-        creatinineClearanceController.text = creatinineClearance.toStringAsFixed(2);
+        creatinineClearanceController.text =
+            creatinineClearance.toStringAsFixed(2);
       });
-
     }
   }
 
@@ -83,15 +84,15 @@ class _FormTestState extends State<PatientDataState> {
   }
 
   final infections = [
-    "Sistema central", // 0
-    "Sangre", // 1
-    "Prostata", // 2
-    "Tracto genito urinario", // 3
-    "Huesos", // 4
-    "Boca", // 5
-    "Pulmones y vía aerea", // 6
-    "Abdomen", // 7
-    "Tejidos blandos", // 8
+    "Sistema central", // 1
+    "Sangre", // 2
+    "Prostata", // 3
+    "Tracto genito urinario", // 4
+    "Huesos", // 5
+    "Boca", // 6
+    "Pulmones y vía aerea", // 7
+    "Abdomen", // 8
+    "Tejidos blandos", // 9
   ];
 
   final switchsLabels = [
@@ -189,7 +190,7 @@ class _FormTestState extends State<PatientDataState> {
             final userDataProvider =
                 Provider.of<UserDataProvider>(context, listen: false);
             final userData = UserData(
-                sex: selectedSex!.option,
+                sex: (selectedSex!.option == 'Masculino' ? 0 : 1),
                 age: ageController.text,
                 weight: weightController.text,
                 creatinine: creatinineController.text,
@@ -197,7 +198,7 @@ class _FormTestState extends State<PatientDataState> {
                 penicillin: penicillinAllergy,
                 crrt: crrt,
                 capd: capd,
-                infection: selectedInfection,
+                infection: selectedInfection + 1,
                 creatinineClearance: creatinineClearanceController.text);
             userDataProvider.setUserData(userData);
             logger.d("Sexo: ${selectedSex!.option}"
@@ -304,4 +305,3 @@ enum Sex {
   const Sex(this.option);
   final String option;
 }
-

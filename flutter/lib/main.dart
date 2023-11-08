@@ -34,7 +34,7 @@ Future<void> main() async {
         '/data_input/manual': (context) => const GramScreen(),
         '/data_input/manual/bacteria': (context) => const BacteriaScreen(),
         '/data_input/camera': (context) => const CameraInput(),
-        '/results': (context) => const Results()
+        '/results': (context) => const ResultsScreen()
       },
     ),
   ));

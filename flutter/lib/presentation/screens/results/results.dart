@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:proyecto_medico/blocs/results/results_blocs.dart';
+import 'package:proyecto_medico/blocs/results/results_events.dart';
+import 'package:proyecto_medico/blocs/results/results_states.dart';
 import 'package:proyecto_medico/models/data_model.dart';
 import 'package:proyecto_medico/presentation/text/tittle_material.dart';
 import 'package:logger/logger.dart';
+import 'package:proyecto_medico/repositories/results_repository.dart';
 
-final infections = [
-  "Sistema central", // 0
-  "Sangre", // 1
-  "Prostata", // 2
-  "Tracto genito urinario", // 3
-  "Huesos", // 4
-  "Boca", // 5
-  "Pulmones y vía aerea", // 6
-  "Abdomen", // 7
-  "Tejidos blandos", // 8
-];
+class ResultsScreen extends StatefulWidget {
+  const ResultsScreen({super.key});
 
-class Results extends StatelessWidget {
-  const Results({Key? key}) : super(key: key);
+  @override
+  State<ResultsScreen> createState() => _ResultsScreenState();
+}
+
+class _ResultsScreenState extends State<ResultsScreen> {
   @override
   Widget build(BuildContext context) {
     final userDataProvider = Provider.of<UserDataProvider>(context);
@@ -26,114 +25,81 @@ class Results extends StatelessWidget {
     final textTheme = Theme.of(context)
         .textTheme
         .apply(displayColor: Theme.of(context).colorScheme.onSurface);
-    return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios),
+
+    return BlocProvider(
+        create: (context) =>
+            ResultsBloc(ResultsRepository())..add(LoadResultsEvent(userData!)),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios),
+            ),
+            title: const Text("Resultados"),
           ),
-          title: const Text("Resultados"),
-        ),
-        body: Center(
-          child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Align(
-                alignment: const AlignmentDirectional(0, 0),
-                child: Container(
-                  width: 400,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 4,
-                        color: Color(0x33000000),
-                        offset: Offset(0, 2),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: const AlignmentDirectional(-1, 0),
-                        child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20, 5, 0, 0),
-                            child: MaterialText(
-                                name: 'Resultados del análisis',
-                                style: textTheme.titleLarge!)),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(20, 5, 0, 0),
-                          child: MaterialText(
-                              name: 'Bacteria: ${userData?.bacterium}',
-                              style: textTheme.labelLarge!),
-                        ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(20, 5, 0, 0),
-                          child: MaterialText(
-                              name:
-                                  'Organo: ${infections[userData?.infection ?? 0]}',
-                              style: textTheme.labelLarge!),
-                        ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1, 0),
-                        child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                50, 5, 0, 0),
-                            child: MaterialText(
-                                name:
-                                    "Sexo: ${userData?.sex}\nPeso: ${userData?.weight}\nEdad: ${userData?.age}\nCreatinina: ${userData?.creatinine}\nAlergia a penicilina: ${userData?.penicillin}\nHemodialisis: ${userData?.hemodialysis}\nCAPD: ${userData?.capd}\nCRRT: ${userData?.crrt}\nDepuración de Creatinina: ${userData?.creatinineClearance}",
-                                style: textTheme.labelLarge!)),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(-1, 0),
-                        child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10, 5, 0, 0),
-                            child: MaterialText(
-                                name: 'Resultados del tratamiento:',
-                                style: textTheme.labelLarge!)),
-                      ),
-                    ],
-                  ),
+          body: Center(
+            child: SingleChildScrollView(
+              child: buildResults(textTheme, userData, logger, context),
+            ),
+          ),
+        ));
+  }
+
+  BlocBuilder<ResultsBloc, ResultsState> buildResults(TextTheme textTheme,
+      UserData? userData, Logger logger, BuildContext context) {
+    return BlocBuilder<ResultsBloc, ResultsState>(
+      builder: (context, state) {
+        if (state is ResultsLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is ResultsLoadedState) {
+          final result = state.result;
+          return Card(
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text('ID: ${result.id}'),
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  logger.d("Sexo: ${userData?.sex}"
-                      "\nPeso: ${userData?.weight}"
-                      "\nEdad: ${userData?.age}'"
-                      "\nCreatinina: ${userData?.creatinine}"
-                      "\nAlergia a penicilina: ${userData?.penicillin}"
-                      "\nHemodialisis: ${userData?.hemodialysis}"
-                      "\nCAPD: ${userData?.capd}"
-                      "\nCRRT: ${userData?.crrt}"
-                      "\nInfección: ${userData?.infection}"
-                      "\nBacteria: ${userData?.bacterium}"
-                      "\nDepuración de Creatinina: ${userData?.creatinineClearance}");
-                  Navigator.popUntil(context, ModalRoute.withName('/'));
-                },
-                child: const Text("Continuar"),
-              ),
-            ],
-          ),
-        )));
+                ListTile(
+                  title: Text('Bacterium: ${result.bacterium.name}'),
+                ),
+                ListTile(
+                  title: Text('Patient ID: ${result.patient.id}'),
+                ),
+                ListTile(
+                  title: Text('Result: ${result.result}'),
+                ),
+                ExpansionTile(
+                  title: Text('Antibiotics Info'),
+                  children: result.antibioticsInfoJson.entries.map((entry) {
+                    return ListTile(
+                      title: Text('ID: ${entry.key}'),
+                      subtitle: Text(
+                          'Quantity: ${entry.value.quantity}, Operator: ${entry.value.operator}'),
+                    );
+                  }).toList(),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                    },
+                    child: Text("Continuar"))
+              ],
+            ),
+          );
+        } else if (state is ResultsErrorState) {
+          return Center(
+            child: Text(state.error),
+          );
+        } else {
+          return const Center(
+            child: Text("Error"),
+          );
+        }
+      },
+    );
   }
 }
