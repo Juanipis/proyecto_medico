@@ -27,16 +27,3 @@ class AntibioticModel {
     };
   }
 }
-
-class UserDataProvider with ChangeNotifier {
-  // ... (otros métodos y propiedades)
-
-  Map<String, AntibioticModel>? _antibiotics;
-
-  Map<String, AntibioticModel>? get antibiotics => _antibiotics;
-
-  void setAntibiotics(Map<String, AntibioticModel> antibiotics) {
-    _antibiotics = antibiotics;
-    notifyListeners();
-  }
-}
