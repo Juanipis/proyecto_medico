@@ -24,6 +24,8 @@ import lombok.Setter;
 @Table(name = "results")
 public class Results {
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

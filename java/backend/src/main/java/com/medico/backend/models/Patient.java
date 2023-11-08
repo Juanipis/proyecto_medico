@@ -44,7 +44,7 @@ public class Patient {
   @Column
   @Getter
   @Setter
-  Boolean creatinine;
+  Double creatinine;
 
   @Column
   @Getter
