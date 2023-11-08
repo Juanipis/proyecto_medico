@@ -3,7 +3,7 @@
 		{
 			"name": ".",
 			"path": "./"
-		}
+		},
 		{
 			"name": "java/backend",
 			"path": "./java/backend"
@@ -11,7 +11,7 @@
 		{
 			"name": "java/database",
 			"path": "./java/database"
-		}
+		},
 		{
 			"path": "./flutter"
 		}
@@ -36,7 +36,7 @@
 			"editor.suggestSelection": "first",
 			"editor.tabCompletion": "onlySnippets",
 			"editor.wordBasedSuggestions": false,
-	}
+	},
 	"java.configuration.updateBuildConfiguration": "automatic",
     	"java.compile.nullAnalysis.mode": "automatic",
 	},

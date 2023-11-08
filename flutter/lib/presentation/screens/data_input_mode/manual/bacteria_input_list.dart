@@ -64,9 +64,10 @@ class _BacteriaScreenState extends State<BacteriaScreen> {
                       }
                       logger.i(
                           "Bacteria selected: $selectedBacteriumName : $selectedBacteriumIndex");
-                      final userDataProvider = Provider.of<UserDataProvider>(context, listen: false);
+                      final userDataProvider =
+                          Provider.of<UserDataProvider>(context, listen: false);
                       final userData = userDataProvider.userData;
-                      userData!.setBacterium(selectedBacteriumIndex!);
+                      userData!.setBacterium(selectedBacteriumIndex! + 1);
                       userDataProvider.setUserData(userData);
                       Navigator.pushNamed(context, '/antibiotic');
                     },

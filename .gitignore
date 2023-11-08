@@ -45,3 +45,19 @@ app.*.map.json
 
 
 java/database/dev-image-medic/.env
+
+flutter/linux/flutter/generated_plugin_registrant.cc
+
+flutter/linux/flutter/generated_plugin_registrant.h
+
+flutter/macos/Flutter/GeneratedPluginRegistrant.swift
+
+flutter/windows/flutter/generated_plugin_registrant.cc
+
+flutter/windows/flutter/generated_plugin_registrant.h
+
+flutter/windows/runner/flutter_window.cpp
+
+flutter/linux/flutter/generated_plugins.cmake
+
+flutter/windows/flutter/generated_plugins.cmake
