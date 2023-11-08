@@ -37,7 +37,7 @@ class Results extends StatelessWidget {
           title: const Text("Resultados"),
         ),
         body: Center(
-          child: SingleChildScrollView(
+            child: SingleChildScrollView(
           child: Column(
             children: [
               Align(
@@ -115,6 +115,34 @@ class Results extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
+              // Verifica que haya datos de antibióticos para mostrar
+              if (userData?.antibiotics != null &&
+                  userData!.antibiotics!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Datos de los antibióticos:',
+                          style: textTheme.titleLarge),
+                      ...userData.antibiotics!.entries.map(
+                        (entry) {
+                          final antibioticName = entry.key;
+                          final antibioticData = entry.value;
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              '$antibioticName: Cantidad - ${antibioticData["quantity"]}, Operador - ${antibioticData["operator"]}',
+                              style: textTheme.bodyLarge,
+                            ),
+                          );
+                        },
+                      ).toList(),
+                    ],
+                  ),
+                ),
+
               ElevatedButton(
                 onPressed: () {
                   logger.d("Sexo: ${userData?.sex}"
