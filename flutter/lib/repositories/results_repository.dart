@@ -52,10 +52,7 @@ class ResultsRepository {
         "id": patientId,
       },
       "result": "Mock information",
-      "antibioticsInfoJson": {
-        "1": {"quantity": 12, "operator": "="},
-        "2": {"quantity": 10, "operator": ">"},
-      }
+      "antibioticsInfoJson": userData.antibiotics,
     };
 
     var response = await http.post(url,
