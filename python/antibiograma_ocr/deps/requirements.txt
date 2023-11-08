@@ -3,3 +3,4 @@ pytesseract
 grpcio
 grpcio-tools
 logzero
+numpy

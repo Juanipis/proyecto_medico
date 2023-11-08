@@ -7,8 +7,10 @@ message ImageRequest {
 }
 
 message OCRResponse {
-  string text = 1;
+    string text = 1;
+    string content_type = 2;  // Campo content_type
 }
+
 
 service OCRService {
   rpc PerformOCR (ImageRequest) returns (OCRResponse);

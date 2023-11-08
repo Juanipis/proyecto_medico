@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x61ntibiogram_ocr.proto\x12\x0f\x61ntibiogram_ocr\"\"\n\x0cImageRequest\x12\x12\n\nimage_data\x18\x01 \x01(\x0c\"\x1b\n\x0bOCRResponse\x12\x0c\n\x04text\x18\x01 \x01(\t2W\n\nOCRService\x12I\n\nPerformOCR\x12\x1d.antibiogram_ocr.ImageRequest\x1a\x1c.antibiogram_ocr.OCRResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x61ntibiogram_ocr.proto\x12\x0f\x61ntibiogram_ocr\"\"\n\x0cImageRequest\x12\x12\n\nimage_data\x18\x01 \x01(\x0c\"1\n\x0bOCRResponse\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x14\n\x0c\x63ontent_type\x18\x02 \x01(\t2W\n\nOCRService\x12I\n\nPerformOCR\x12\x1d.antibiogram_ocr.ImageRequest\x1a\x1c.antibiogram_ocr.OCRResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -23,7 +23,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_IMAGEREQUEST']._serialized_start=42
   _globals['_IMAGEREQUEST']._serialized_end=76
   _globals['_OCRRESPONSE']._serialized_start=78
-  _globals['_OCRRESPONSE']._serialized_end=105
-  _globals['_OCRSERVICE']._serialized_start=107
-  _globals['_OCRSERVICE']._serialized_end=194
+  _globals['_OCRRESPONSE']._serialized_end=127
+  _globals['_OCRSERVICE']._serialized_start=129
+  _globals['_OCRSERVICE']._serialized_end=216
 # @@protoc_insertion_point(module_scope)
