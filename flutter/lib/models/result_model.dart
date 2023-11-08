@@ -42,9 +42,9 @@ class Bacterium {
 class Patient {
   final int id;
   final String sex;
-  final int weight;
+  final double weight;
   final int age;
-  final int creatinine;
+  final double creatinine;
   final bool hemodialisis;
   final bool capd;
   final bool crrt;
@@ -92,7 +92,7 @@ class InfectionLocation {
 }
 
 class AntibioticInfo {
-  final int quantity;
+  final double quantity;
   final String operator;
   final String name;
 

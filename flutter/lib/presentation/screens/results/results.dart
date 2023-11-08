@@ -87,6 +87,45 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         style: textTheme.titleMedium),
                   ),
                   ExpansionTile(
+                    title: Text('Patient Info', style: textTheme.titleLarge),
+                    children: <Widget>[
+                      ListTile(
+                        title: Text('Sex: ${result.patient.sex}',
+                            style: textTheme.bodyLarge),
+                      ),
+                      ListTile(
+                        title: Text('Weight: ${result.patient.weight}',
+                            style: textTheme.bodyLarge),
+                      ),
+                      ListTile(
+                        title: Text('Age: ${result.patient.age}',
+                            style: textTheme.bodyLarge),
+                      ),
+                      ListTile(
+                        title: Text('Creatinine: ${result.patient.creatinine}',
+                            style: textTheme.bodyLarge),
+                      ),
+                      ListTile(
+                        title: Text(
+                            'Hemodialisis: ${result.patient.hemodialisis}',
+                            style: textTheme.bodyLarge),
+                      ),
+                      ListTile(
+                        title: Text('CAPD: ${result.patient.capd}',
+                            style: textTheme.bodyLarge),
+                      ),
+                      ListTile(
+                        title: Text('CRRT: ${result.patient.crrt}',
+                            style: textTheme.bodyLarge),
+                      ),
+                      ListTile(
+                        title: Text(
+                            'Infection Location: ${result.patient.infectionLocation.name}',
+                            style: textTheme.bodyLarge),
+                      ),
+                    ],
+                  ),
+                  ExpansionTile(
                     title:
                         Text('Antibiotics Info', style: textTheme.titleLarge),
                     children: result.antibioticsInfoJson.entries.map((entry) {

@@ -21,7 +21,7 @@ class ResultsRepository {
               : 'O'),
       "weight": patientData.weight,
       "age": patientData.age,
-      "creatinine": patientData.creatinine,
+      "creatinine": double.parse(patientData.creatinineClearance!),
       "hemodialisis": patientData.hemodialysis,
       "capd": patientData.capd,
       "crrt": patientData.crrt,
