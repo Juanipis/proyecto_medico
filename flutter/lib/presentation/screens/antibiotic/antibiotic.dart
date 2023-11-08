@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:proyecto_medico/models/antibiotic_model.dart';
+import 'package:proyecto_medico/presentation/screens/results/results.dart';
 import 'package:proyecto_medico/repositories/antibiotic_repository.dart';
 
 class Antibiotic extends StatefulWidget {
@@ -52,16 +53,46 @@ class _AntibioticState extends State<Antibiotic> {
           icon: const Icon(Icons.arrow_back_ios),
         ),
         title: const Text("Antibióticos"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.navigate_next),
+            onPressed: () {
+              // Asegúrate de que todos los datos necesarios están listos antes de navegar
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Results()),
+              );
+            },
+          ),
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Padding(
               padding: const EdgeInsets.all(20.0),
-              child: ListView.builder(
-                itemCount: _antibiotics.length,
-                itemBuilder: (context, index) {
-                  return _buildAntibioticInput(context, _antibiotics[index]);
-                },
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: _antibiotics.length,
+                      itemBuilder: (context, index) {
+                        return _buildAntibioticInput(
+                            context, _antibiotics[index]);
+                      },
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Asegúrate de que todos los datos necesarios están listos antes de navegar
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Results()),
+                      );
+                    },
+                    child: const Text('Siguiente'),
+                  ),
+                ],
               ),
             ),
     );
