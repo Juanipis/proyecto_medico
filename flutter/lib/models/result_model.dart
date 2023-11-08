@@ -94,13 +94,16 @@ class InfectionLocation {
 class AntibioticInfo {
   final int quantity;
   final String operator;
+  final String name;
 
-  AntibioticInfo({required this.quantity, required this.operator});
+  AntibioticInfo(
+      {required this.quantity, required this.operator, required this.name});
 
   factory AntibioticInfo.fromJson(Map<String, dynamic> json) {
     return AntibioticInfo(
       quantity: json['quantity'],
       operator: json['operator'],
+      name: json['name'],
     );
   }
 }

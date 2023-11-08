@@ -58,45 +58,65 @@ class _ResultsScreenState extends State<ResultsScreen> {
         } else if (state is ResultsLoadedState) {
           final result = state.result;
           return Card(
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  title: Text('ID: ${result.id}'),
-                ),
-                ListTile(
-                  title: Text('Bacterium: ${result.bacterium.name}'),
-                ),
-                ListTile(
-                  title: Text('Patient ID: ${result.patient.id}'),
-                ),
-                ListTile(
-                  title: Text('Result: ${result.result}'),
-                ),
-                ExpansionTile(
-                  title: Text('Antibiotics Info'),
-                  children: result.antibioticsInfoJson.entries.map((entry) {
-                    return ListTile(
-                      title: Text('ID: ${entry.key}'),
-                      subtitle: Text(
-                          'Quantity: ${entry.value.quantity}, Operator: ${entry.value.operator}'),
-                    );
-                  }).toList(),
-                ),
-                ElevatedButton(
+            elevation: 0, // No shadow
+            color: Theme.of(context)
+                .colorScheme
+                .surfaceVariant, // Background color
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0), // Rounded corners
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0), // Inner padding
+              child: Column(
+                mainAxisSize: MainAxisSize.min, // Fit content size
+                children: <Widget>[
+                  ListTile(
+                    title:
+                        Text('ID: ${result.id}', style: textTheme.titleLarge),
+                  ),
+                  ListTile(
+                    title: Text('Bacterium: ${result.bacterium.name}',
+                        style: textTheme.titleMedium),
+                  ),
+                  ListTile(
+                    title: Text('Patient ID: ${result.patient.id}',
+                        style: textTheme.titleMedium),
+                  ),
+                  ListTile(
+                    title: Text('Result: ${result.result}',
+                        style: textTheme.titleMedium),
+                  ),
+                  ExpansionTile(
+                    title:
+                        Text('Antibiotics Info', style: textTheme.titleLarge),
+                    children: result.antibioticsInfoJson.entries.map((entry) {
+                      return ListTile(
+                        title: Text('ID: ${entry.key}',
+                            style: textTheme.bodyLarge),
+                        subtitle: Text(
+                          'Name: ${entry.value.name}, Quantity: ${entry.value.quantity}, Operator: ${entry.value.operator}',
+                          style: textTheme.bodyMedium,
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.popUntil(context, ModalRoute.withName('/'));
                     },
-                    child: Text("Continuar"))
-              ],
+                    child: const Text("Continue"),
+                  )
+                ],
+              ),
             ),
           );
         } else if (state is ResultsErrorState) {
           return Center(
-            child: Text(state.error),
+            child: Text(state.error, style: textTheme.titleMedium),
           );
         } else {
           return const Center(
-            child: Text("Error"),
+            child: Text("Unexpected Error"),
           );
         }
       },

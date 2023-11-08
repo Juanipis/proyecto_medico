@@ -21,6 +21,7 @@ Future<void> main() async {
       theme: ThemeData(
           useMaterial3: true,
           scaffoldBackgroundColor: const Color.fromARGB(255, 241, 243, 246),
+          colorSchemeSeed: Colors.blue,
           appBarTheme: const AppBarTheme(
               iconTheme: IconThemeData(color: Colors.white),
               backgroundColor: Color.fromARGB(255, 93, 171, 255),
